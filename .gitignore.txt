@@ -1,1 +1,6 @@
 __pycache__/
+.idea/
+.pytest_cache/
+assets/
+pyvenv.cfg
+
