@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -38,6 +40,7 @@ def setup_scope_function(request):
     web_driver.get(TestData.BASE_URL_PROD)
     request.cls.driver = web_driver
     yield
+    time.sleep(5)
     web_driver.quit()
 
 

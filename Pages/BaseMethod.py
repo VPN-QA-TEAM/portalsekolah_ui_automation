@@ -18,7 +18,7 @@ class MyGenericMethods:
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
         return element.text
 
-    def is_enabled(self, input_locator):
+    def is_visible(self, input_locator):
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
         return bool(element)
 

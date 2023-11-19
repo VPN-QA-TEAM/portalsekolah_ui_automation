@@ -1,6 +1,7 @@
 import pytest
 from Config.dataconfig import TestData
 from Pages.LoginPage import Login
+from Pages.DashboardPage import Dashboard
 
 @pytest.mark.usefixtures("setup_scope_function")
 class TestLoginScenario:
@@ -9,6 +10,9 @@ class TestLoginScenario:
         login.do_login(TestData.USERID_TEACHER_K13, TestData.INVALID_PASSWORD)
         login.do_verify_toast_failed_login("Nama Pengguna atau Kata Sandi Salah")
 
+    @pytest.mark.smoke
     def test_login_teacher_success(self):
         login = Login(self.driver)
         login.do_login(TestData.USERID_TEACHER_K13, TestData.VALID_PASSWORD)
+        dashboard = Dashboard(self.driver)
+        dashboard.is_modal_email_after_login_visible()

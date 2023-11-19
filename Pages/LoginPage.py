@@ -19,7 +19,7 @@ class Login(MyGenericMethods):
         self.sendkeys_to(self.LOC_PASSWD, password)
         self.click_to(self.LOC_BTN_LOGIN)
 
-    """Assertion Function : Failed login toastbar"""
+    """Verify Function : Failed login toastbar"""
     def do_verify_toast_failed_login(self, input_validation_message):
         text_failed_toast = self.get_element_text(self.LOC_TOAST)
         assert text_failed_toast == input_validation_message, "Gagal nih! Toastbar warning textnya beda!"
