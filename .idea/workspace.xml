@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c171c9e-a922-4e44-819c-a34ede452c3e" name="Changes" comment="" />
+    <list default="true" id="6c171c9e-a922-4e44-819c-a34ede452c3e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AssessmentKmPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AssessmentKmPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/DashboardPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/DashboardPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/LoginPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/LoginPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test_assesment_km.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_assesment_km.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test_login_scenario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_login_scenario.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,10 +57,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "assesmentkm",
+    "git-widget-placeholder": "feature/assesment__km",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "E:/",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "vcs.Subversion"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -61,6 +69,9 @@
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Khairun\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6c171c9e-a922-4e44-819c-a34ede452c3e" name="Changes" comment="" />
