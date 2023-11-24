@@ -6,7 +6,9 @@ class Dashboard(MyGenericMethods):
     """Locators Dashboard page"""
     LOC_WELCOME = (By.XPATH, '//div[@class="pageHeading"]/p/em')
     LOC_MODAL_INPUT_EMAIL = (By.XPATH, '//div[@class="modal-content email-change-modal"]')
-    LOC_BTN_LEWATI_ON_MODAL = (By.XPATH, '//button[text()="Lewati sekarang"]')
+    LOC_BTN_LEWATI_ON_MODAL = (By.XPATH, '//button[.="Lewati sekarang"]')
+    LOC_BTN_ASSESMENT_SIDEBAR = (By.XPATH, '//li[@class="menu-item icon-ujian"]')
+    LOC_CREATE_ASSESMENT_DROPDOWN = (By.XPATH, '//div[@class="pr-icon icon-add-assessment"]/parent::div[@class="profile-left"]')
 
     """Constructor of the page class"""
     def __init__(self, driver):
@@ -29,4 +31,8 @@ class Dashboard(MyGenericMethods):
         except:
             self.do_verify_welcome_text("Selamat datang")
             print("modal input email tidak muncul")
+
+    def click_assesment_sidebars_btn(self):
+        self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
+        self.click_to(self.LOC_CREATE_ASSESMENT_DROPDOWN)
 
