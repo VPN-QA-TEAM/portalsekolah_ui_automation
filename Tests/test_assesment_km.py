@@ -8,7 +8,7 @@ import time
 @pytest.mark.usefixtures("setup_scope_function")
 class TestAssessmentKM:
 
-    @pytest.mark.smoke
+    @pytest.mark.doing
     def test_tc_km01(self):
         login = Login(self.driver)
         dashboard = Dashboard(self.driver)
