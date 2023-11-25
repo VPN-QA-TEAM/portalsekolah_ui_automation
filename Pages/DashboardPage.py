@@ -29,6 +29,7 @@ class Dashboard(MyGenericMethods):
             self.do_verify_welcome_text("Selamat datang")
 
     def click_sidebar_assessment_menu(self):
+        self.scroll_down_page()
         self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
         self.click_to(self.LOC_CREATE_ASSESMENT_DROPDOWN)
 
