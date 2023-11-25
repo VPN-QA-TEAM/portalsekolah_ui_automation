@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="6c171c9e-a922-4e44-819c-a34ede452c3e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/Pages/AssessmentKmPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AssessmentKmPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/DashboardPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/DashboardPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/LoginPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/LoginPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test_assesment_km.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_assesment_km.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test_login_scenario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_login_scenario.py" afterDir="false" />
+>>>>>>> ab76b8d87007069ab6c1fae8172d9e480a2bf057
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +49,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2YNjQxlVxwtFEqa6hPMw1KQQd7Q" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,10 +60,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
     "git-widget-placeholder": "MAIN",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "E:/",
     "settings.editor.selected.configurable": "preferences.pluginManager"
+=======
+    "git-widget-placeholder": "feature/assesment__km",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/",
+    "settings.editor.selected.configurable": "vcs.Subversion"
+>>>>>>> ab76b8d87007069ab6c1fae8172d9e480a2bf057
   }
 }]]></component>
   <component name="RecentsManager">
@@ -60,6 +79,9 @@
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Khairun\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6c171c9e-a922-4e44-819c-a34ede452c3e" name="Changes" comment="" />
