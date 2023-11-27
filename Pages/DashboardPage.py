@@ -13,7 +13,7 @@ class Dashboard(MyGenericMethods):
     """Constructor of the page class"""
     def __init__(self, driver):
         super().__init__(driver)
-
+    
     '''Verify Function : Welcome text'''
     def do_verify_welcome_text(self, input_validation_message):
         welcome_text = self.get_element_text(self.LOC_WELCOME)
@@ -22,14 +22,17 @@ class Dashboard(MyGenericMethods):
 
     def is_modal_email_after_login_visible(self):
         try:
+            # Wait for the modal to be visble
             self.is_visible(self.LOC_MODAL_INPUT_EMAIL)
+
+            # If modal is visible, click the "Lewati" button
             self.click_to(self.LOC_BTN_LEWATI_ON_MODAL)
             self.do_verify_welcome_text("Selamat datang")
         except:
             self.do_verify_welcome_text("Selamat datang")
+            print("modal input email tidak muncul")
 
-    def click_sidebar_assessment_menu(self):
-        self.scroll_down_page()
+    def click_assesment_sidebars_btn(self):
         self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
         self.click_to(self.LOC_CREATE_ASSESMENT_DROPDOWN)
 
