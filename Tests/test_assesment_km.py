@@ -5,6 +5,7 @@ from Pages.DashboardPage import Dashboard
 from Pages.AssessmentKmPage import AssessmentKM
 import time
 
+
 @pytest.mark.usefixtures("setup_scope_function")
 class TestAssessmentKM:
 
@@ -13,9 +14,13 @@ class TestAssessmentKM:
         login = Login(self.driver)
         dashboard = Dashboard(self.driver)
         assessment_km = AssessmentKM(self.driver)
-        login.do_login(TestData.USERID_TEACHER_K13, TestData.VALID_PASSWORD)
+        login.do_login(TestData.USERID_TEACHER_KM, TestData.VALID_PASSWORD)
         dashboard.is_modal_email_after_login_visible()
         dashboard.click_sidebar_assessment_menu()
         assessment_km.do_verify_create_assessment_page("Buat Penilaian")
-        assessment_km.click_grade_dropdown_field()
-
+        # assessment_km.click_grade_dropdown_field()
+        # assessment_km.click_grade_dropdown_list("7-MERDEKA - Biologi 7KM")
+        assessment_km.click_deadline_field()
+        assessment_km.click_set_time_deadline_btn()
+        assessment_km.set_time_deadline()
+        time.sleep(10)
