@@ -6,6 +6,7 @@ from Pages.DashboardPage import Dashboard
 @pytest.mark.usefixtures("setup_scope_function")
 class TestLoginScenario:
 
+
     def test_login_teacher_wrong_password(self):
         login = Login(self.driver)
         login.do_login(TestData.USERID_TEACHER_K13, TestData.INVALID_PASSWORD)

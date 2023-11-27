@@ -1,3 +1,5 @@
+import time
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -22,5 +24,21 @@ class MyGenericMethods:
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
         return bool(element)
 
+    # def scroll_down_page(self):
+    #     self.driver.execute_script("window.scrollTo(190, document.documentElement.scrollHeight);")
+    #     time.sleep(1.5)  # Add a short delay to allow content loading (adjust as needed)
+    #
+    # def scroll_up_page(self):
+    #     # Scroll up to the top of the page
+    #     self.driver.execute_script("window.scrollTo(0, 0);")
+    #     time.sleep(1.5)
 
+    def scroll_down_page(self):
+        actions = ActionChains(self.driver)
+        actions.send_keys(Keys.PAGE_DOWN).perform()
+        time.sleep(1.5)  # Add a short delay to allow content loading (adjust as needed)
 
+    def scroll_up_page(self):
+        actions = ActionChains(self.driver)
+        actions.send_keys(Keys.PAGE_UP).perform()
+        time.sleep(1.5)  # Add a short delay to allow content loading (adjust as needed)

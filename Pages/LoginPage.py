@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from Pages.BaseMethod import MyGenericMethods
+import time
 
 class Login(MyGenericMethods):
 

@@ -40,6 +40,7 @@ def setup_scope_function(request):
     web_driver.get(TestData.BASE_URL_PROD)
     request.cls.driver = web_driver
     yield
+    time.sleep(1.5)
     web_driver.quit()
 
 
@@ -63,7 +64,7 @@ def setup_scope_class(request):
         web_driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
 
     web_driver.maximize_window()
-    web_driver.get(TestData.BASE_URL_PROD)
+    web_driver.get(TestData.BASE_URL_UAT)
     request.cls.driver = web_driver
     yield
     web_driver.quit()
