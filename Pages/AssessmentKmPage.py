@@ -18,8 +18,7 @@ class AssessmentKM(MyGenericMethods):
 
     def do_verify_create_assessment_page(self, input_page_title):
         create_assessment_page_title = self.get_element_text(self.LOC_ASSESMENT_PAGE_TITLE)
-        assert input_page_title in create_assessment_page_title, "Verify title page tidak sesuai!"
-        print(create_assessment_page_title)
+        assert input_page_title in create_assessment_page_title, "Buat Penilaian"
 
     def click_grade_dropdown_field(self):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
