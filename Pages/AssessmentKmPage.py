@@ -13,6 +13,8 @@ class AssessmentKM(MyGenericMethods):
         LOCATOR = (By.XPATH, '//div[@class="gss-values dropdown-item  dropdown-item" and .="'+input_grade+'"]')
         return LOCATOR
 
+    LOC_REPLACEMENT_ASSESSMENT_TOGGLE = (By.XPATH, '//input[@id="replacement"]')
+
     LOC_DEADLINE_FIELD = (By.XPATH, '//input[@class="form-control"]')
     LOC_SET_TIME_DEADLINE_BTN = (By.XPATH, '//td[@class="rdtTimeToggle"]')
     LOC_INCREASE_HOUR_BTN = (By.XPATH, '//div[@class="rdtCounters"]/div[1]//span[@class="rdtBtn"][1]')
@@ -25,6 +27,8 @@ class AssessmentKM(MyGenericMethods):
     def LOC_CATEGORY_DROPDOWN_LIST(self, assessment_category):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+assessment_category+'"]')
         return locators
+
+    LOC_SESSION_SETTING_TOGGLE = (By.XPATH, '//input[@id="session_switch"]')
 
     LOC_SEMESTER_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[5]/select[@id="inputState"]')
     def LOC_SEMESTER_DROPDOWN_LIST(self, semester):
@@ -39,6 +43,8 @@ class AssessmentKM(MyGenericMethods):
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
         return locators
+
+    LOC_AUTOSUBMISSION_CHECKBOX = (By.XPATH, '//input[@id="autoSubmission"]')
 
     LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="mb-0 form-row"]//select[@id="inputState"]')
     def LOC_RESULT_POSTING_DATE_DROPDOWN_LIST(self, post_time_option):
@@ -63,6 +69,9 @@ class AssessmentKM(MyGenericMethods):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
         self.click_to(self.LOC_GRADE_DROPDOWN_LIST(input_grade))
 
+    def set_replacement_assessment(self):
+        self.click_to(self.LOC_REPLACEMENT_ASSESSMENT_TOGGLE)
+
     def input_title(self, input_title):
         self.sendkeys_to(self.LOC_TITLE_INPUT_FIELD, input_title)
 
@@ -74,65 +83,82 @@ class AssessmentKM(MyGenericMethods):
         self.click_to(self.LOC_SEMESTER_DROPDOWN_FIELD)
         self.click_to(self.LOC_SEMESTER_DROPDOWN_LIST(semester))
 
+    def set_multi_session(self):
+        self.click_to(self.LOC_SESSION_SETTING_TOGGLE)
+
     def set_post_to(self, class_name):
         self.click_to(self.LOC_POSTTO_DROPDOWN_FIELD)
         self.click_to(self.LOC_POSTTO_DROPDOWN_LIST(class_name))
 
-    def click_deadline_field(self):
+    # def click_deadline_field(self):
+    #     self.click_to(self.LOC_DEADLINE_FIELD)
+
+    def set_date_plus_deadline(self, increment):
         self.click_to(self.LOC_DEADLINE_FIELD)
-
-    def set_plus1_date_deadline(self):
         today_date = date.today()
-        get_day = str(int(today_date.strftime("%d")) + 1)
+        get_day = str(int(today_date.strftime("%d")) + int(increment))
         get_month = str(int(today_date.strftime("%m")) - 1)
         get_year = today_date.strftime("%Y")
         self.click_to(self.LOC_DATE_PICKER(get_day, get_month, get_year))
 
-    def set_plus2_date_deadline(self):
+    def set_date_minus_deadline(self, decrement):
+        self.click_to(self.LOC_DEADLINE_FIELD)
         today_date = date.today()
-        get_day = str(int(today_date.strftime("%d")) + 2)
+        get_day = str(int(today_date.strftime("%d")) - int(decrement))
         get_month = str(int(today_date.strftime("%m")) - 1)
         get_year = today_date.strftime("%Y")
         self.click_to(self.LOC_DATE_PICKER(get_day, get_month, get_year))
 
-    def set_min1_date_deadline(self):
-        today_date = date.today()
-        get_day = str(int(today_date.strftime("%d")) - 1)
-        get_month = str(int(today_date.strftime("%m")) - 1)
-        get_year = today_date.strftime("%Y")
-        self.click_to(self.LOC_DATE_PICKER(get_day, get_month, get_year))
+    def set_today_time_plus_deadline(self, increment):
+        self.click_to(self.LOC_DEADLINE_FIELD)
+        get_current_time = datetime.now()
+        get_time_plus = get_current_time + timedelta(minutes=int(increment))
+        get_hour = int(get_time_plus.strftime("%H"))
+        get_minutes = int(get_time_plus.strftime("%M"))
 
-    def set_min2_date_deadline(self):
-        today_date = date.today()
-        get_day = str(int(today_date.strftime("%d")) - 2)
-        get_month = str(int(today_date.strftime("%m")) - 1)
-        get_year = today_date.strftime("%Y")
-        self.click_to(self.LOC_DATE_PICKER(get_day, get_month, get_year))
-
-    def click_set_time_deadline_btn(self):
         self.click_to(self.LOC_SET_TIME_DEADLINE_BTN)
 
-    def click_increase_hour_btn(self):
-        self.click_to(self.LOC_INCREASE_HOUR_BTN)
+        for x in range(get_hour):
+            self.click_to(self.LOC_INCREASE_HOUR_BTN)
+        for x in range(get_minutes):
+            self.click_to(self.LOC_INCREASE_MINUTES_BTN)
 
-    def click_increase_minutes_btn(self):
-        self.click_to(self.LOC_INCREASE_MINUTES_BTN)
-
-    def set_time_deadline(self):
+    def set_today_time_minus_deadline(self, decrement):
+        self.click_to(self.LOC_DEADLINE_FIELD)
         get_current_time = datetime.now()
-        get_time_plus_5_minutes = get_current_time + timedelta(minutes=5)
-        get_hour = int(get_time_plus_5_minutes.strftime("%H"))
-        get_minutes = int(get_time_plus_5_minutes.strftime("%M"))
+        get_time_plus = get_current_time - timedelta(minutes=int(decrement))
+        get_hour = int(get_time_plus.strftime("%H"))
+        get_minutes = int(get_time_plus.strftime("%M"))
+
+        self.click_to(self.LOC_SET_TIME_DEADLINE_BTN)
 
         for x in range(get_hour):
-            self.click_increase_hour_btn()
-
+            self.click_to(self.LOC_INCREASE_HOUR_BTN)
         for x in range(get_minutes):
-            self.click_increase_minutes_btn()
+            self.click_to(self.LOC_INCREASE_MINUTES_BTN)
+
+    def set_date_time_deadline(self, date_increment, hour, minute):
+        self.click_to(self.LOC_DEADLINE_FIELD)
+
+        today_date = date.today()
+        get_day = str(int(today_date.strftime("%d")) + int(date_increment))
+        get_month = str(int(today_date.strftime("%m")) - 1)
+        get_year = today_date.strftime("%Y")
+        self.click_to(self.LOC_DATE_PICKER(get_day, get_month, get_year))
+
+        self.click_to(self.LOC_SET_TIME_DEADLINE_BTN)
+
+        for x in range(int(hour)):
+            self.click_to(self.LOC_INCREASE_HOUR_BTN)
+        for x in range(int(minute)):
+            self.click_to(self.LOC_INCREASE_MINUTES_BTN)
 
     def set_post_result_time_dropdown_list(self, post_time_option):
         self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD)
         self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_LIST(post_time_option))
+
+    def set_autosubmission(self):
+        self.click_to(self.LOC_AUTOSUBMISSION_CHECKBOX)
 
     def set_result_type_dropdown_list(self, result_type):
         self.click_to(self.LOC_RESULT_TYPE_DROPDOWN_FIELD)

@@ -23,10 +23,7 @@ class TestAssessmentKM:
         assessment_km.set_assessment_category("formative")  # input category = formative / summative
         assessment_km.set_semester("1")  # semester = 1 / 2
         assessment_km.set_post_to("A - KM")  # class name : example = A - KM
-        assessment_km.click_deadline_field()
-        assessment_km.set_plus2_date_deadline()  # comment this line if the deadline is today date
-        assessment_km.click_set_time_deadline_btn()
-        assessment_km.set_time_deadline()
+        assessment_km.set_date_time_deadline(2, 10, 30)
         assessment_km.set_post_result_time_dropdown_list("manual")  # input time option = automatic_on_deadline / manual / scheduled
         assessment_km.set_result_type_dropdown_list("grade_with_submission_detail")  # result type input = grade_with_submission_detail / grade_only
         time.sleep(5)
