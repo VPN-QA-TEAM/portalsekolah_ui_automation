@@ -41,3 +41,6 @@ class TestData:
     USERID_STUDENT14 = "siswa14"
     USERID_STUDENT15 = "siswa15"
     USERID_STUDENT16 = "siswa16"
+
+    """this is all test data for fill assessment data"""
+    ASSESSMENT_TITLE = "TC_KM.01"
