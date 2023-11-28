@@ -7,8 +7,8 @@ class AssessmentKM(MyGenericMethods):
 
     """Locators Assessment page"""
     LOC_ASSESMENT_PAGE_TITLE = (By.XPATH, '//span[@class=" active"]')
-    LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
 
+    LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
     def LOC_GRADE_DROPDOWN_LIST (self, input_grade):
         LOCATOR = (By.XPATH, '//div[@class="gss-values dropdown-item  dropdown-item" and .="'+input_grade+'"]')
         return LOCATOR
@@ -20,20 +20,18 @@ class AssessmentKM(MyGenericMethods):
     LOC_INCREASE_MINUTES_BTN = (By.XPATH, '//div[@class="rdtCounters"]/div[3]//span[@class="rdtBtn"][1]')
     LOC_DECREASE_MINUTES_BTN = (By.XPATH, '//div[@class="rdtCounters"]/div[3]//span[@class="rdtBtn"][2]')
     LOC_TITLE_INPUT_FIELD = (By.XPATH, '//input[@id="titleIB"]')
-    LOC_CATEGORY_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[4]/select[@id="inputState"]')
 
+    LOC_CATEGORY_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[4]/select[@id="inputState"]')
     def LOC_CATEGORY_DROPDOWN_LIST(self, assessment_category):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+assessment_category+'"]')
         return locators
 
     LOC_SEMESTER_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[5]/select[@id="inputState"]')
-
     def LOC_SEMESTER_DROPDOWN_LIST(self, semester):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+semester+'"]')
         return locators
 
     LOC_POSTTO_DROPDOWN_FIELD = (By.XPATH, '//label[@for="inputState"]/following-sibling::div[@id="videoSelection"]')
-
     def LOC_POSTTO_DROPDOWN_LIST(self, class_name):
         locators = (By.XPATH, '//div[@class="dropdown-item "]//span[.="'+class_name+'"]')
         return locators
@@ -43,13 +41,11 @@ class AssessmentKM(MyGenericMethods):
         return locators
 
     LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="mb-0 form-row"]//select[@id="inputState"]')
-
     def LOC_RESULT_POSTING_DATE_DROPDOWN_LIST(self, post_time_option):
         locators = (By.XPATH, '//option[@value="'+post_time_option+'"]')
         return locators
 
     LOC_RESULT_TYPE_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[11]/select[@id="inputState"]')
-
     def LOC_RESULT_TYPE_DROPDOWN_LIST(self, result_type):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+result_type+'"]')
         return locators
@@ -63,10 +59,8 @@ class AssessmentKM(MyGenericMethods):
         assert input_page_title in create_assessment_page_title, "Verify title page tidak sesuai!"
         print(create_assessment_page_title)
 
-    def click_grade_dropdown_field(self):
+    def choose_grade_dropdown_list(self, input_grade):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
-
-    def click_grade_dropdown_list(self, input_grade):
         self.click_to(self.LOC_GRADE_DROPDOWN_LIST(input_grade))
 
     def input_title(self, input_title):
@@ -136,14 +130,10 @@ class AssessmentKM(MyGenericMethods):
         for x in range(get_minutes):
             self.click_increase_minutes_btn()
 
-    def click_post_result_time_dropdown_field(self):
+    def set_post_result_time_dropdown_list(self, post_time_option):
         self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD)
-
-    def click_post_result_time_dropdown_list(self, post_time_option):
         self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_LIST(post_time_option))
 
-    def click_result_type_dropdown_field(self):
+    def set_result_type_dropdown_list(self, result_type):
         self.click_to(self.LOC_RESULT_TYPE_DROPDOWN_FIELD)
-
-    def click_result_type_dropdown_list(self, result_type):
         self.click_to(self.LOC_RESULT_TYPE_DROPDOWN_LIST(result_type))
