@@ -16,6 +16,9 @@ class MyGenericMethods:
     def sendkeys_to(self, input_locator, input_text):
         WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator)).send_keys(input_text)
 
+    def clear_field(self, input_locator):
+        WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator)).clear()
+
     def get_element_text(self, input_locator):
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
         return element.text

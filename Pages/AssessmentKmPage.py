@@ -56,6 +56,19 @@ class AssessmentKM(MyGenericMethods):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+result_type+'"]')
         return locators
 
+    LOC_SUBMISSION_TYPE_TOGGLE = (By.XPATH, '//li[@class="p-2 rotate180d"]/label[@class="toggle-switch"]')
+
+    LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX = (By.XPATH, '//label[@class="custom-control-label label-time-limits" and @for="customCheck1"]')
+
+    LOC_ASSESSMENT_TIME_LIMIT_INPUT_FIELD = (By.XPATH, '//input[@id="minsPlaceholder"]')
+
+    LOC_DISTRIBUTION_DROPDOWN_FIELD = (By.XPATH, '//div[17]//select[@id="inputState"]')
+    def LOC_DISTRIBUTION_DROPDOWN_LIST(self, distribution_schedule):
+        locators = (By.XPATH, '//option[@value="'+distribution_schedule+'"]')
+        return locators
+
+    LOC_INSTRUCTION_FIELD = (By.XPATH, '//div[@class="tox-edit-area"]')
+
     """Constructor of the page class"""
     def __init__(self, driver):
         super().__init__(driver)
@@ -90,8 +103,8 @@ class AssessmentKM(MyGenericMethods):
         self.click_to(self.LOC_POSTTO_DROPDOWN_FIELD)
         self.click_to(self.LOC_POSTTO_DROPDOWN_LIST(class_name))
 
-    # def click_deadline_field(self):
-    #     self.click_to(self.LOC_DEADLINE_FIELD)
+
+    """SET DEADLINE FUNCTION"""
 
     def set_date_plus_deadline(self, increment):
         self.click_to(self.LOC_DEADLINE_FIELD)
@@ -153,13 +166,31 @@ class AssessmentKM(MyGenericMethods):
         for x in range(int(minute)):
             self.click_to(self.LOC_INCREASE_MINUTES_BTN)
 
-    def set_post_result_time_dropdown_list(self, post_time_option):
-        self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD)
-        self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_LIST(post_time_option))
+    """END OF SET DEADLINE FUNCTION"""
 
     def set_autosubmission(self):
         self.click_to(self.LOC_AUTOSUBMISSION_CHECKBOX)
 
+    def set_post_result_time_dropdown_list(self, post_time_option):
+        self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD)
+        self.click_to(self.LOC_RESULT_POSTING_DATE_DROPDOWN_LIST(post_time_option))
+
     def set_result_type_dropdown_list(self, result_type):
         self.click_to(self.LOC_RESULT_TYPE_DROPDOWN_FIELD)
         self.click_to(self.LOC_RESULT_TYPE_DROPDOWN_LIST(result_type))
+
+    def set_submission_type(self):
+        self.click_to(self.LOC_SUBMISSION_TYPE_TOGGLE)
+
+    def set_assessment_time_limit(self, time_limit):
+        self.click_to(self.LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX)
+        self.clear_field(self.LOC_ASSESSMENT_TIME_LIMIT_INPUT_FIELD)
+        self.sendkeys_to(self.LOC_ASSESSMENT_TIME_LIMIT_INPUT_FIELD, time_limit)
+
+    def set_distribution_schedule(self, distribution_schedule):
+        self.click_to(self.LOC_DISTRIBUTION_DROPDOWN_FIELD)
+        self.click_to(self.LOC_DISTRIBUTION_DROPDOWN_LIST(distribution_schedule))
+
+    def input_instruction(self, input_instruction):
+        self.click_to(self.LOC_INSTRUCTION_FIELD)
+        self.sendkeys_to(self.LOC_INSTRUCTION_FIELD, input_instruction)

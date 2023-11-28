@@ -24,6 +24,8 @@ class TestAssessmentKM:
         assessment_km.set_semester("1")  # semester = 1 / 2
         assessment_km.set_post_to("A - KM")  # class name : example = A - KM
         assessment_km.set_date_time_deadline(2, 10, 30)
-        assessment_km.set_post_result_time_dropdown_list("manual")  # input time option = automatic_on_deadline / manual / scheduled
+        assessment_km.set_post_result_time_dropdown_list("automatic_on_deadline")  # input time option = automatic_on_deadline / manual / scheduled
         assessment_km.set_result_type_dropdown_list("grade_with_submission_detail")  # result type input = grade_with_submission_detail / grade_only
+        assessment_km.set_distribution_schedule("publish_immediately")  # input distribution schedule = publish_immediately / publish_for_future
+        assessment_km.input_instruction(TestData.ASSESSMENT_TITLE)
         time.sleep(5)
