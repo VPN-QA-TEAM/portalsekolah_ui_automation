@@ -29,7 +29,8 @@ def setup_scope_function(request):
         options.add_experimental_option("detach", True)
         options.add_argument("--disable-notifications")  # for chrome only
         options.add_argument("--start-maximized")
-        # options.headless = True
+        options.add_argument('--log-level=3')
+        # options.add_argument('--headless')
         web_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     elif browser == "firefox":
         web_driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
@@ -37,7 +38,7 @@ def setup_scope_function(request):
         web_driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
 
     web_driver.maximize_window()
-    web_driver.get(TestData.BASE_URL_UAT)
+    web_driver.get(TestData.BASE_URL_PROD)
     request.cls.driver = web_driver
     yield
     time.sleep(1.5)
@@ -56,7 +57,8 @@ def setup_scope_class(request):
         options.add_experimental_option("detach", True)
         options.add_argument("--disable-notifications")  # for chrome only
         options.add_argument("--start-maximized")
-        # options.headless = True
+        options.add_argument('--log-level=3')
+        # options.add_argument('--headless')
         web_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     elif browser == "firefox":
         web_driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
@@ -64,7 +66,7 @@ def setup_scope_class(request):
         web_driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
 
     web_driver.maximize_window()
-    web_driver.get(TestData.BASE_URL_UAT)
+    web_driver.get(TestData.BASE_URL_PROD)
     request.cls.driver = web_driver
     yield
     web_driver.quit()
