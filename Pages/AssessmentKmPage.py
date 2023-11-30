@@ -65,7 +65,7 @@ class AssessmentKM(MyGenericMethods):
         assert input_page_title in create_assessment_page_title, "Verify title page tidak sesuai!"
         print(create_assessment_page_title)
 
-    '''Update dari miftah utk handle dropdown select or non select element'''
+    '''Update dari miftah utk handle dropdown non select element'''
     def choose_grade_course(self, input_grade_course):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
         self.click_to((By.XPATH, '//div[contains(text(), "' + input_grade_course + '")]'))
@@ -76,7 +76,7 @@ class AssessmentKM(MyGenericMethods):
     def input_title(self, input_title):
         self.sendkeys_to(self.LOC_TITLE_INPUT_FIELD, input_title)
 
-    '''Update dari miftah utk handle dropdown select or non select element'''
+    '''Update dari miftah utk handle dropdown select'''
     def choose_assessment_category(self, input_formative_or_summative):
         dropdown = Select(self.find_element(self.LOC_ASSESMENT_CATEGORY))   # Select(self.LOC_ASSESMENT_CATEGORY)
         dropdown.select_by_value(input_formative_or_summative)
