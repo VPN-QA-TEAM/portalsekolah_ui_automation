@@ -4,4 +4,5 @@ __pycache__/
 assets/
 pyvenv.cfg
 report.html
+test_selftest.py
 
