@@ -27,6 +27,10 @@ class MyGenericMethods:
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
         return bool(element)
 
+    def find_element(self, input_locator):
+        element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
+        return element
+
     # def scroll_down_page(self):
     #     self.driver.execute_script("window.scrollTo(190, document.documentElement.scrollHeight);")
     #     time.sleep(1.5)  # Add a short delay to allow content loading (adjust as needed)
