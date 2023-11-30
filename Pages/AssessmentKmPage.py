@@ -10,7 +10,6 @@ class AssessmentKM(MyGenericMethods):
     """Locators Assessment page"""
     LOC_ASSESMENT_PAGE_TITLE = (By.XPATH, '//span[@class=" active"]')
 
-    '''Update dari miftah utk handle dropdown select or non select element'''
     LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
     LOC_ASSESMENT_CATEGORY = (By.ID, "inputState")
 
@@ -40,10 +39,6 @@ class AssessmentKM(MyGenericMethods):
         locators = (By.XPATH, '//div[@class="dropdown-item "]//span[.="'+class_name+'"]')
         return locators
 
-    def LOC_DATE_PICKER(self, day, month, year):
-        locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
-        return locators
-
     LOC_AUTOSUBMISSION_CHECKBOX = (By.XPATH, '//input[@id="autoSubmission"]')
 
     LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="mb-0 form-row"]//select[@id="inputState"]')
@@ -54,6 +49,10 @@ class AssessmentKM(MyGenericMethods):
     LOC_RESULT_TYPE_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[11]/select[@id="inputState"]')
     def LOC_RESULT_TYPE_DROPDOWN_LIST(self, result_type):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+result_type+'"]')
+        return locators
+
+    def LOC_DATE_PICKER(self, day, month, year):
+        locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
         return locators
 
     """Constructor of the page class"""
