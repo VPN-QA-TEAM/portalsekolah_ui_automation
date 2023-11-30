@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from Pages.BaseMethod import MyGenericMethods
 
@@ -24,12 +26,13 @@ class Dashboard(MyGenericMethods):
         try:
             self.is_visible(self.LOC_MODAL_INPUT_EMAIL)
             self.click_to(self.LOC_BTN_LEWATI_ON_MODAL)
-            self.do_verify_welcome_text("Selamat datang")
+            self.do_verify_welcome_text("Selamat datang,")
         except:
-            self.do_verify_welcome_text("Selamat datang")
+            self.do_verify_welcome_text("Selamat datang,")
 
     def click_sidebar_assessment_menu(self):
         self.scroll_down_page()
+        time.sleep(0.5)
         self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
         self.click_to(self.LOC_CREATE_ASSESMENT_DROPDOWN)
 

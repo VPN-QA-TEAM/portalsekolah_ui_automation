@@ -1,4 +1,5 @@
 class TestData:
+
     """this is base of url"""
     BASE_URL_STAGING = "https://portalsiswa.id"
     BASE_URL_UAT = "https://portalmurid.com"
@@ -15,7 +16,7 @@ class TestData:
 
     # TEACHER & ADMIN :
     USERID_TEACHER_K13 = "sub_teacher_k13"
-    USERID_TEACHER_KM = "teacherkm"
+    USERID_TEACHER_KM = "sub_teacher_km"
     USERID_HOMEROOM_K13 = "homeroomk13"
     USERID_HOMEROOM_KM = "homeroomkm"
     USERID_ADMIN = "adminschool1"
@@ -40,3 +41,6 @@ class TestData:
     USERID_STUDENT14 = "siswa14"
     USERID_STUDENT15 = "siswa15"
     USERID_STUDENT16 = "siswa16"
+
+    """this is all test data for fill assessment data"""
+    ASSESSMENT_TITLE = "TC_KM.01"
