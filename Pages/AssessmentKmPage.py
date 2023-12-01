@@ -12,8 +12,8 @@ class AssessmentKM(MyGenericMethods):
     LOC_ASSESMENT_PAGE_TITLE = (By.XPATH, '//span[@class=" active"]')
 
     LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
+    LOC_GRADE_COURSE_LIST = (By.XPATH, '//div[@class="teacher-gss-dropdown-menu dropdown-menu show"]/div')
     LOC_ASSESMENT_CATEGORY = (By.ID, "inputState")
-
     LOC_REPLACEMENT_ASSESSMENT_TOGGLE = (By.XPATH, '//input[@id="replacement"]/parent::li//label[@for="replacement"]')
     LOC_DEADLINE_FIELD = (By.XPATH, '//input[@class="form-control"]')
     LOC_SET_TIME_DEADLINE_BTN = (By.XPATH, '//td[@class="rdtTimeToggle"]')
@@ -67,10 +67,11 @@ class AssessmentKM(MyGenericMethods):
         assert input_page_title in create_assessment_page_title, "Verify title page tidak sesuai!"
         print(create_assessment_page_title)
 
-    '''Update dari miftah utk handle dropdown non select element'''
     def choose_grade_course(self, input_grade_course):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
-        self.click_to((By.XPATH, '//div[contains(text(), "' + input_grade_course + '")]'))
+        for i in self.get_elements_text(self.LOC_GRADE_COURSE_LIST):
+            if i == input_grade_course:
+                self.click_to(i)
 
     def set_replacement_assessment(self):
         self.click_to(self.LOC_REPLACEMENT_ASSESSMENT_TOGGLE)
