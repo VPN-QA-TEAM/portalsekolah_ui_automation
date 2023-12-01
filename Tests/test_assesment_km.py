@@ -18,7 +18,7 @@ class TestAssessmentKM:
         dashboard.is_modal_email_after_login_visible()
         dashboard.click_sidebar_assessment_menu()
         assessment_km.do_verify_create_assessment_page("Buat Penilaian")
-        assessment_km.choose_grade_course("7KM - BIOLOGICAL - KM")
+        assessment_km.choose_grade_course("7-MERDEKA - Biologi 7KM")
         assessment_km.input_title(TestData.ASSESSMENT_TITLE)
         assessment_km.choose_assessment_category("formative")  # input category = formative / summative
         assessment_km.set_semester("1")  # semester = 1 / 2
