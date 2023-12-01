@@ -30,7 +30,7 @@ def setup_scope_function(request):
         options.add_argument("--disable-notifications")  # for chrome only
         options.add_argument("--start-maximized")
         options.add_argument('--log-level=3')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         web_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     elif browser == "firefox":
         web_driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
