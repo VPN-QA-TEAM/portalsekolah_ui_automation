@@ -5,6 +5,7 @@ from Pages.BaseMethod import MyGenericMethods
 from datetime import datetime, timedelta, date
 import time
 
+
 class AssessmentKM(MyGenericMethods):
 
     """Locators Assessment page"""
@@ -13,7 +14,7 @@ class AssessmentKM(MyGenericMethods):
     LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
     LOC_ASSESMENT_CATEGORY = (By.ID, "inputState")
 
-    LOC_REPLACEMENT_ASSESSMENT_TOGGLE = (By.XPATH, '//input[@id="replacement"]')
+    LOC_REPLACEMENT_ASSESSMENT_TOGGLE = (By.XPATH, '//input[@id="replacement"]/parent::li//label[@for="replacement"]')
     LOC_DEADLINE_FIELD = (By.XPATH, '//input[@class="form-control"]')
     LOC_SET_TIME_DEADLINE_BTN = (By.XPATH, '//td[@class="rdtTimeToggle"]')
     LOC_INCREASE_HOUR_BTN = (By.XPATH, '//div[@class="rdtCounters"]/div[1]//span[@class="rdtBtn"][1]')
@@ -27,7 +28,7 @@ class AssessmentKM(MyGenericMethods):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+assessment_category+'"]')
         return locators
 
-    LOC_SESSION_SETTING_TOGGLE = (By.XPATH, '//input[@id="session_switch"]')
+    LOC_SESSION_SETTING_TOGGLE = (By.XPATH, '//input[@id="session_switch"]/parent::li//label[@for="session_switch"]')
 
     LOC_SEMESTER_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[5]/select[@id="inputState"]')
     def LOC_SEMESTER_DROPDOWN_LIST(self, semester):
@@ -50,6 +51,8 @@ class AssessmentKM(MyGenericMethods):
     def LOC_RESULT_TYPE_DROPDOWN_LIST(self, result_type):
         locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+result_type+'"]')
         return locators
+
+    LOC_SUBMISSION_TYPE_TOGGLE = (By.XPATH, '//input[@id="switch"]/following-sibling::label[@class="toggle-switch"]')
 
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
@@ -156,7 +159,7 @@ class AssessmentKM(MyGenericMethods):
 
     """END OF SET DEADLINE FUNCTION"""
 
-    def set_autosubmission(self):
+    def set_autosubmission_on(self):
         self.click_to(self.LOC_AUTOSUBMISSION_CHECKBOX)
 
     def set_post_result_time_dropdown_list(self, post_time_option):
