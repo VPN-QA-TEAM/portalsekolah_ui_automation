@@ -1,5 +1,6 @@
 import time
 from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -10,8 +11,13 @@ class MyGenericMethods:
     def __init__(self, driver):
         self.driver = driver
 
-    def click_to(self, input_locator):
-        WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator)).click()
+    def click_to(self, input_locator_or_element):
+        if isinstance(input_locator_or_element, tuple):
+            WebDriverWait(self.driver, 120).until(EC.visibility_of_element_located(input_locator_or_element)).click()
+        elif isinstance(input_locator_or_element, WebElement):
+            input_locator_or_element.click()
+        else:
+            raise ValueError("Invalid input. harus masukin tuple(locator) atau WebElement ya bro!!!")
 
     def sendkeys_to(self, input_locator, input_text):
         WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator)).send_keys(input_text)
@@ -24,8 +30,8 @@ class MyGenericMethods:
         return element.text
 
     def get_elements_text(self, input_locator_plural):
-        elements = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator_plural))
-        return elements.text
+        elements = WebDriverWait(self.driver, 30).until(EC.presence_of_all_elements_located(input_locator_plural))
+        return elements
 
     def is_visible(self, input_locator):
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))

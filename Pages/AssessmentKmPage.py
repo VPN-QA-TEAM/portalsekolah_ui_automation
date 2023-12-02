@@ -69,9 +69,11 @@ class AssessmentKM(MyGenericMethods):
 
     def choose_grade_course(self, input_grade_course):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
-        for i in self.get_elements_text(self.LOC_GRADE_COURSE_LIST):
-            if i == input_grade_course:
+        ele = self.get_elements_text(self.LOC_GRADE_COURSE_LIST)
+        for i in ele:
+            if i.text == input_grade_course:
                 self.click_to(i)
+                break
 
     def set_replacement_assessment(self):
         self.click_to(self.LOC_REPLACEMENT_ASSESSMENT_TOGGLE)
