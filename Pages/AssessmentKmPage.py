@@ -13,9 +13,9 @@ class AssessmentKM(MyGenericMethods):
     LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
     LOC_GRADE_COURSE_LIST = (By.XPATH, '//div[@class="teacher-gss-dropdown-menu dropdown-menu show"]/div')
 
-    def alternate_grade_course_list(self, input_grade_course_name):
-        locator = (By.XPATH, '//div[@class="teacher-gss-dropdown-menu dropdown-menu show"]/div[.="'+input_grade_course_name+'"]')
-        return locator
+    # def alternate_grade_course_list(self, input_grade_course_name):
+    #     locator = (By.XPATH, '//div[@class="teacher-gss-dropdown-menu dropdown-menu show"]/div[.="'+input_grade_course_name+'"]')
+    #     return locator
 
     LOC_ASSESSMENT_CATEGORY_DROPDOWN = (By.XPATH, '//div[@class="form-group"][3]//select[@id="inputState"]')
     LOC_SEMESTER_LIST_DROPDOWN = (By.XPATH, '//div[@class="form-group"][4]//select[@id="inputState"]')
@@ -36,14 +36,16 @@ class AssessmentKM(MyGenericMethods):
         return locators
 
     LOC_AUTOSUBMISSION_CHECKBOX = (By.XPATH, '//input[@id="autoSubmission"]/following-sibling::label[@for="autoSubmission"]')
-
     LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="form-group"][1]//select[@id="inputState"]')
     LOC_RESULT_TYPE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="form-group"][6]//select[@id="inputState"]')
     LOC_SUBMISSION_TYPE_TOGGLE = (By.XPATH, '//input[@id="switch"]/following-sibling::label[@class="toggle-switch"]')
+    LOC_ANTICHEAT_CHECKBOX = (By.XPATH, '//input[@id="antiCheatFeatureCheckbox"]/following-sibling::label[@for="antiCheatFeatureCheckbox"]')
+    LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX = (By.XPATH, '//input[@id="customCheck1"]/following-sibling::label[@class="custom-control-label label-time-limits"]')
+    LOC_ACCRSS_CAMERA_CHECKBOX = (By.XPATH, '//input[@id="accessCameraCheckbox"]/following-sibling::label[@for="accessCameraCheckbox"]')
 
-    def LOC_CATEGORY_DROPDOWN_LIST(self, assessment_category):
-        locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+assessment_category+'"]')
-        return locators
+    # def LOC_CATEGORY_DROPDOWN_LIST(self, assessment_category):
+    #     locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+assessment_category+'"]')
+    #     return locators
 
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
@@ -163,6 +165,14 @@ class AssessmentKM(MyGenericMethods):
         dropdown = Select(self.find_element(self.LOC_RESULT_TYPE_DROPDOWN_FIELD))
         dropdown.select_by_value(result_type)
 
-
     def set_submission_type(self):
         self.click_to(self.LOC_SUBMISSION_TYPE_TOGGLE)
+
+    def set_time_limit_on(self):
+        self.click_to(self.LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX)
+
+    def set_anticheat_on(self):
+        self.click_to(self.LOC_ANTICHEAT_CHECKBOX)
+
+    def set_access_camera_off(self):
+        self.click_to(self.LOC_ACCRSS_CAMERA_CHECKBOX)
