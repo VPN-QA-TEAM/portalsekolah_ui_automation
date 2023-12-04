@@ -5,8 +5,8 @@ class TestData:
     BASE_URL_UAT = "https://portalmurid.com"
     BASE_URL_PROD = "https://portalsekolah.co.id"
 
-    """this is all test data needed for verify/assert"""
-    dashboard_text = "selamat datang"
+    # """this is all test data needed for verify/assert"""
+    # dashboard_text = "selamat datang"
 
     """this is all credential account"""
     # General Password :
@@ -15,11 +15,11 @@ class TestData:
     BLANK_PASSWORD = ""
 
     # TEACHER & ADMIN :
-    USERID_TEACHER_K13 = "sub_teacher_k13"
-    USERID_TEACHER_KM = "teacher.km"
-    USERID_HOMEROOM_K13 = "homeroomk13"
-    USERID_HOMEROOM_KM = "homeroomkm"
-    USERID_ADMIN = "adminschool1"
+    USERID_TEACHER_K13 = "teacherk13_py"
+    USERID_TEACHER_KM = "teacherkm_py"
+    USERID_HOMEROOM_K13 = "homeroomk13_7a_py"
+    USERID_HOMEROOM_KM = "homeroomkm_7b_py"
+    USERID_ADMIN = "admin_sekolah"
 
     # STUDENT k13 / 7A
     USERID_STUDENT1 = "siswa1"
@@ -31,16 +31,16 @@ class TestData:
     USERID_STUDENT6 = "siswa6"
     USERID_STUDENT7 = "siswa7"
     USERID_STUDENT8 = "siswa8"
-    # STUDENT KM / 7A
-    USERID_STUDENT9 = "siswa9"
-    USERID_STUDENT10 = "siswa10"
-    USERID_STUDENT11 = "siswa11"
-    USERID_STUDENT12 = "siswa12"
-    # STUDENT KM / 7B
-    USERID_STUDENT13 = "siswa13"
-    USERID_STUDENT14 = "siswa14"
-    USERID_STUDENT15 = "siswa15"
-    USERID_STUDENT16 = "siswa16"
+    # STUDENT KM / 7-A
+    USERID_STUDENT9 = "siswa_auto_9"
+    USERID_STUDENT10 = "siswa_auto_10"
+    USERID_STUDENT11 = "siswa_auto_11"
+    USERID_STUDENT12 = "siswa_auto_12"
+    # STUDENT KM / 7-B
+    USERID_STUDENT13 = "siswa_auto_13"
+    USERID_STUDENT14 = "siswa_auto_14"
+    USERID_STUDENT15 = "siswa_auto_15"
+    USERID_STUDENT16 = "siswa_auto_16"
 
     """this is all test data for fill assessment data"""
     ASSESSMENT_TITLE = "TC_KM.01"
