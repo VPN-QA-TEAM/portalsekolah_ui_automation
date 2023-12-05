@@ -3,7 +3,6 @@ from selenium.webdriver.support.ui import Select
 
 from Pages.BaseMethod import MyGenericMethods
 from datetime import datetime, timedelta, date
-import time
 
 
 class AssessmentKM(MyGenericMethods):
@@ -25,12 +24,8 @@ class AssessmentKM(MyGenericMethods):
     LOC_TITLE_INPUT_FIELD = (By.XPATH, '//input[@id="titleIB"]')
     LOC_CATEGORY_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[4]/select[@id="inputState"]')
     LOC_SESSION_SETTING_TOGGLE = (By.XPATH, '//input[@id="session_switch"]/parent::li//label[@for="session_switch"]')
-
     LOC_POSTTO_DROPDOWN_FIELD = (By.XPATH, '//label[@for="inputState"]/following-sibling::div[@id="videoSelection"]')
-    def LOC_POSTTO_DROPDOWN_LIST(self, class_name):
-        locators = (By.XPATH, '//div[@class="dropdown-item "]//span[.="'+class_name+'"]')
-        return locators
-
+    LOC_POSTTO_DROPDOWN_LIST = (By.XPATH, '//div[@class="dropdown-menu show dropdown-bottom"]/div')
     LOC_AUTOSUBMISSION_CHECKBOX = (By.XPATH, '//input[@id="autoSubmission"]/following-sibling::label[@for="autoSubmission"]')
     LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="form-group"][1]//select[@id="inputState"]')
     LOC_RESULT_TYPE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="form-group"][6]//select[@id="inputState"]')
@@ -39,6 +34,10 @@ class AssessmentKM(MyGenericMethods):
     LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX = (By.XPATH, '//input[@id="customCheck1"]/following-sibling::label[@class="custom-control-label label-time-limits"]')
     LOC_ASSESSMENT_TIME_LIMIT_FIELD = (By.XPATH, '//input[@id="minsPlaceholder" and @name="timeLimit"]')
     LOC_ACCESS_CAMERA_CHECKBOX = (By.XPATH, '//input[@id="accessCameraCheckbox"]/following-sibling::label[@for="accessCameraCheckbox"]')
+    LOC_PUBLISH_SCHEDULE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="mt-3 form-row"]//select[@id="inputState"]')
+    LOC_SHUFFLE_QUESTION_CHECKBOX = (By.XPATH, '//input[@id="customCheck2"]/following-sibling::label[@for="customCheck2"]')
+    LOC_TEXT_EDITOR_FRAME = (By.XPATH, '//iframe[1]')
+    LOC_INSTRUCTION_TEXT_FIELD = (By.XPATH, '//body[@id="tinymce"]')
 
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
@@ -51,7 +50,7 @@ class AssessmentKM(MyGenericMethods):
     def do_verify_create_assessment_page(self, input_page_title):
         create_assessment_page_title = self.get_element_text(self.LOC_ASSESMENT_PAGE_TITLE)
         assert input_page_title in create_assessment_page_title, "Verify title page tidak sesuai!"
-        print(create_assessment_page_title)
+        print("Success Go To Create Assessment Page")
 
     def choose_grade_course(self, input_grade_course):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
@@ -80,7 +79,12 @@ class AssessmentKM(MyGenericMethods):
 
     def set_post_to(self, class_name):
         self.click_to(self.LOC_POSTTO_DROPDOWN_FIELD)
-        self.click_to(self.LOC_POSTTO_DROPDOWN_LIST(class_name))
+        ele = self.get_elements_text(self.LOC_POSTTO_DROPDOWN_LIST)
+        for i in ele:
+            if i.text == class_name:
+                self.click_to(i)
+                break
+
         self.click_to(self.LOC_DISSMISS_DROPDOWN)
 
 
@@ -175,3 +179,16 @@ class AssessmentKM(MyGenericMethods):
 
     def set_access_camera_off(self):
         self.click_to(self.LOC_ACCESS_CAMERA_CHECKBOX)
+
+    def set_publish_schedule(self, publish_schedule):
+        self.move_to_element(self.LOC_PUBLISH_SCHEDULE_DROPDOWN_FIELD)
+        dropdown = Select(self.find_element(self.LOC_PUBLISH_SCHEDULE_DROPDOWN_FIELD))
+        dropdown.select_by_value(publish_schedule)
+
+    def set_shuffle_question_on(self):
+        self.click_to(self.LOC_SHUFFLE_QUESTION_CHECKBOX)
+
+    def input_instruction(self, input_instruction):
+        self.switch_frame(self.LOC_TEXT_EDITOR_FRAME)
+        self.click_to(self.LOC_INSTRUCTION_TEXT_FIELD)
+        self.sendkeys_to(self.LOC_INSTRUCTION_TEXT_FIELD, input_instruction)
