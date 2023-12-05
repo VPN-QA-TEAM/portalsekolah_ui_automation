@@ -1,5 +1,5 @@
 import time
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains, Keys, Remote
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -59,3 +59,11 @@ class MyGenericMethods:
         actions = ActionChains(self.driver)
         actions.send_keys(Keys.PAGE_UP).perform()
         time.sleep(1.5)  # Add a short delay to allow content loading (adjust as needed)
+
+    def move_to_element(self, input_locators):
+        actions = ActionChains(self.driver)
+        actions.move_to_element(self.find_element(input_locators)).perform()
+        time.sleep(1.5)
+
+    def switch_frame(self, input_locator):
+        WebDriverWait(self.driver, 30).until(EC.frame_to_be_available_and_switch_to_it(input_locator))

@@ -3,20 +3,15 @@ from selenium.webdriver.support.ui import Select
 
 from Pages.BaseMethod import MyGenericMethods
 from datetime import datetime, timedelta, date
-import time
 
 
 class AssessmentKM(MyGenericMethods):
 
     """Locators Assessment page"""
+    LOC_DISSMISS_DROPDOWN = (By.XPATH, '//label[contains(.,"Semester")]')
     LOC_ASSESMENT_PAGE_TITLE = (By.XPATH, '//span[@class=" active"]')
     LOC_GRADE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="da-teacher-dropdown-toggle"]')
     LOC_GRADE_COURSE_LIST = (By.XPATH, '//div[@class="teacher-gss-dropdown-menu dropdown-menu show"]/div')
-
-    # def alternate_grade_course_list(self, input_grade_course_name):
-    #     locator = (By.XPATH, '//div[@class="teacher-gss-dropdown-menu dropdown-menu show"]/div[.="'+input_grade_course_name+'"]')
-    #     return locator
-
     LOC_ASSESSMENT_CATEGORY_DROPDOWN = (By.XPATH, '//div[@class="form-group"][3]//select[@id="inputState"]')
     LOC_SEMESTER_LIST_DROPDOWN = (By.XPATH, '//div[@class="form-group"][4]//select[@id="inputState"]')
     LOC_REPLACEMENT_ASSESSMENT_TOGGLE = (By.XPATH, '//input[@id="replacement"]/parent::li//label[@for="replacement"]')
@@ -29,23 +24,20 @@ class AssessmentKM(MyGenericMethods):
     LOC_TITLE_INPUT_FIELD = (By.XPATH, '//input[@id="titleIB"]')
     LOC_CATEGORY_DROPDOWN_FIELD = (By.XPATH, '//form[@class="pr-2 creation-field"]/div[4]/select[@id="inputState"]')
     LOC_SESSION_SETTING_TOGGLE = (By.XPATH, '//input[@id="session_switch"]/parent::li//label[@for="session_switch"]')
-
     LOC_POSTTO_DROPDOWN_FIELD = (By.XPATH, '//label[@for="inputState"]/following-sibling::div[@id="videoSelection"]')
-    def LOC_POSTTO_DROPDOWN_LIST(self, class_name):
-        locators = (By.XPATH, '//div[@class="dropdown-item "]//span[.="'+class_name+'"]')
-        return locators
-
+    LOC_POSTTO_DROPDOWN_LIST = (By.XPATH, '//div[@class="dropdown-menu show dropdown-bottom"]/div')
     LOC_AUTOSUBMISSION_CHECKBOX = (By.XPATH, '//input[@id="autoSubmission"]/following-sibling::label[@for="autoSubmission"]')
     LOC_RESULT_POSTING_DATE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="form-group"][1]//select[@id="inputState"]')
     LOC_RESULT_TYPE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="form-group"][6]//select[@id="inputState"]')
     LOC_SUBMISSION_TYPE_TOGGLE = (By.XPATH, '//input[@id="switch"]/following-sibling::label[@class="toggle-switch"]')
     LOC_ANTICHEAT_CHECKBOX = (By.XPATH, '//input[@id="antiCheatFeatureCheckbox"]/following-sibling::label[@for="antiCheatFeatureCheckbox"]')
     LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX = (By.XPATH, '//input[@id="customCheck1"]/following-sibling::label[@class="custom-control-label label-time-limits"]')
-    LOC_ACCRSS_CAMERA_CHECKBOX = (By.XPATH, '//input[@id="accessCameraCheckbox"]/following-sibling::label[@for="accessCameraCheckbox"]')
-
-    # def LOC_CATEGORY_DROPDOWN_LIST(self, assessment_category):
-    #     locators = (By.XPATH, '//select[@id="inputState"]//option[@value="'+assessment_category+'"]')
-    #     return locators
+    LOC_ASSESSMENT_TIME_LIMIT_FIELD = (By.XPATH, '//input[@id="minsPlaceholder" and @name="timeLimit"]')
+    LOC_ACCESS_CAMERA_CHECKBOX = (By.XPATH, '//input[@id="accessCameraCheckbox"]/following-sibling::label[@for="accessCameraCheckbox"]')
+    LOC_PUBLISH_SCHEDULE_DROPDOWN_FIELD = (By.XPATH, '//div[@class="mt-3 form-row"]//select[@id="inputState"]')
+    LOC_SHUFFLE_QUESTION_CHECKBOX = (By.XPATH, '//input[@id="customCheck2"]/following-sibling::label[@for="customCheck2"]')
+    LOC_TEXT_EDITOR_FRAME = (By.XPATH, '//iframe[1]')
+    LOC_INSTRUCTION_TEXT_FIELD = (By.XPATH, '//body[@id="tinymce"]')
 
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
@@ -58,7 +50,7 @@ class AssessmentKM(MyGenericMethods):
     def do_verify_create_assessment_page(self, input_page_title):
         create_assessment_page_title = self.get_element_text(self.LOC_ASSESMENT_PAGE_TITLE)
         assert input_page_title in create_assessment_page_title, "Verify title page tidak sesuai!"
-        print(create_assessment_page_title)
+        print("Success Go To Create Assessment Page")
 
     def choose_grade_course(self, input_grade_course):
         self.click_to(self.LOC_GRADE_DROPDOWN_FIELD)
@@ -87,7 +79,13 @@ class AssessmentKM(MyGenericMethods):
 
     def set_post_to(self, class_name):
         self.click_to(self.LOC_POSTTO_DROPDOWN_FIELD)
-        self.click_to(self.LOC_POSTTO_DROPDOWN_LIST(class_name))
+        ele = self.get_elements_text(self.LOC_POSTTO_DROPDOWN_LIST)
+        for i in ele:
+            if i.text == class_name:
+                self.click_to(i)
+                break
+
+        self.click_to(self.LOC_DISSMISS_DROPDOWN)
 
 
     """SET DEADLINE FUNCTION"""
@@ -152,6 +150,8 @@ class AssessmentKM(MyGenericMethods):
         for x in range(int(minute)):
             self.click_to(self.LOC_INCREASE_MINUTES_BTN)
 
+        self.click_to(self.LOC_DISSMISS_DROPDOWN)
+
     """END OF SET DEADLINE FUNCTION"""
 
     def set_autosubmission_on(self):
@@ -164,15 +164,31 @@ class AssessmentKM(MyGenericMethods):
     def set_result_type_dropdown_list(self, result_type):
         dropdown = Select(self.find_element(self.LOC_RESULT_TYPE_DROPDOWN_FIELD))
         dropdown.select_by_value(result_type)
+        self.click_to(self.LOC_DISSMISS_DROPDOWN)
 
-    def set_submission_type(self):
+    def set_offline_submission_type(self):
         self.click_to(self.LOC_SUBMISSION_TYPE_TOGGLE)
 
-    def set_time_limit_on(self):
+    def set_time_limit(self, input_minutes_time_limit):
         self.click_to(self.LOC_ASSESSMENT_TIME_LIMIT_CHECKBOX)
+        self.clear_field(self.LOC_ASSESSMENT_TIME_LIMIT_FIELD)
+        self.sendkeys_to(self.LOC_ASSESSMENT_TIME_LIMIT_FIELD, int(input_minutes_time_limit))
 
     def set_anticheat_on(self):
         self.click_to(self.LOC_ANTICHEAT_CHECKBOX)
 
     def set_access_camera_off(self):
-        self.click_to(self.LOC_ACCRSS_CAMERA_CHECKBOX)
+        self.click_to(self.LOC_ACCESS_CAMERA_CHECKBOX)
+
+    def set_publish_schedule(self, publish_schedule):
+        self.move_to_element(self.LOC_PUBLISH_SCHEDULE_DROPDOWN_FIELD)
+        dropdown = Select(self.find_element(self.LOC_PUBLISH_SCHEDULE_DROPDOWN_FIELD))
+        dropdown.select_by_value(publish_schedule)
+
+    def set_shuffle_question_on(self):
+        self.click_to(self.LOC_SHUFFLE_QUESTION_CHECKBOX)
+
+    def input_instruction(self, input_instruction):
+        self.switch_frame(self.LOC_TEXT_EDITOR_FRAME)
+        self.click_to(self.LOC_INSTRUCTION_TEXT_FIELD)
+        self.sendkeys_to(self.LOC_INSTRUCTION_TEXT_FIELD, input_instruction)

@@ -20,7 +20,7 @@ class Dashboard(MyGenericMethods):
     def do_verify_welcome_text(self, input_validation_message):
         welcome_text = self.get_element_text(self.LOC_WELCOME)
         assert input_validation_message in welcome_text, "Gagal nih! welcome text beda!"
-        print(welcome_text)
+        print("Success Login")
 
     def is_modal_email_after_login_visible(self):
         try:
@@ -31,7 +31,6 @@ class Dashboard(MyGenericMethods):
             self.do_verify_welcome_text("Selamat datang,")
 
     def click_sidebar_assessment_menu(self):
-        self.scroll_down_page()
         time.sleep(0.5)
         self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
         self.click_to(self.LOC_CREATE_ASSESMENT_DROPDOWN)
