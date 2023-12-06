@@ -48,7 +48,7 @@ class AssessmentKM(MyGenericMethods):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
         return locators
 
-
+    """Constructor of the page class"""
     def __init__(self, driver):
         super().__init__(driver)
 
