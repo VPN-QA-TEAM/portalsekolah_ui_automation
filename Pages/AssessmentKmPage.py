@@ -1,8 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-
 from Pages.BaseMethod import MyGenericMethods
 from datetime import datetime, timedelta, date
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class AssessmentKM(MyGenericMethods):
@@ -38,6 +40,8 @@ class AssessmentKM(MyGenericMethods):
     LOC_SHUFFLE_QUESTION_CHECKBOX = (By.XPATH, '//input[@id="customCheck2"]/following-sibling::label[@for="customCheck2"]')
     LOC_TEXT_EDITOR_FRAME = (By.XPATH, '//iframe[1]')
     LOC_INSTRUCTION_TEXT_FIELD = (By.XPATH, '//body[@id="tinymce"]')
+    LOC_CREATE_QUESTION_BTN = (By.XPATH, '//div[@class="btn btn-assessment-create-question btn-primary font-weight-semibold"]')
+    LOC_CANCEL_CREATE_ASSESSMENT_BTN = (By.XPATH, '//div[@class="mr-3 btn btn-assessment-cancel btn-outline-secondary font-weight-semibold"]')
 
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
@@ -79,11 +83,13 @@ class AssessmentKM(MyGenericMethods):
 
     def set_post_to(self, class_name):
         self.click_to(self.LOC_POSTTO_DROPDOWN_FIELD)
+
         ele = self.get_elements_text(self.LOC_POSTTO_DROPDOWN_LIST)
         for i in ele:
-            if i.text == class_name:
-                self.click_to(i)
-                break
+            for x in class_name:
+                if i.text == x:
+                    self.click_to(i)
+                    break
 
         self.click_to(self.LOC_DISSMISS_DROPDOWN)
 
@@ -192,3 +198,11 @@ class AssessmentKM(MyGenericMethods):
         self.switch_frame(self.LOC_TEXT_EDITOR_FRAME)
         self.click_to(self.LOC_INSTRUCTION_TEXT_FIELD)
         self.sendkeys_to(self.LOC_INSTRUCTION_TEXT_FIELD, input_instruction)
+        self.switch_to_default_frame()
+
+    def click_create_question_btn(self):
+        self.click_to(self.LOC_CREATE_QUESTION_BTN)
+
+    def cancel_create_assessment(self):
+        self.click_to(self.LOC_CANCEL_CREATE_ASSESSMENT_BTN)
+        self.accept_alert()

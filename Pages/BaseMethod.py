@@ -67,3 +67,10 @@ class MyGenericMethods:
 
     def switch_frame(self, input_locator):
         WebDriverWait(self.driver, 30).until(EC.frame_to_be_available_and_switch_to_it(input_locator))
+
+    def switch_to_default_frame(self):
+        self.driver.switch_to.default_content()
+
+    def accept_alert(self):
+        alert_msg = self.driver.switch_to.alert
+        alert_msg.accept()
