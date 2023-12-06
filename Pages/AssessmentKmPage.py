@@ -2,9 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from Pages.BaseMethod import MyGenericMethods
 from datetime import datetime, timedelta, date
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 class AssessmentKM(MyGenericMethods):
@@ -42,6 +39,10 @@ class AssessmentKM(MyGenericMethods):
     LOC_INSTRUCTION_TEXT_FIELD = (By.XPATH, '//body[@id="tinymce"]')
     LOC_CREATE_QUESTION_BTN = (By.XPATH, '//div[@class="btn btn-assessment-create-question btn-primary font-weight-semibold"]')
     LOC_CANCEL_CREATE_ASSESSMENT_BTN = (By.XPATH, '//div[@class="mr-3 btn btn-assessment-cancel btn-outline-secondary font-weight-semibold"]')
+    LOC_QUESTION_NEW_BTN = (By.XPATH, '//button[@class="btn add-q "]')
+    LOC_QUESTION_TEST_BANK_BTN = (By.XPATH, '//button[@class="btn test-b "]')
+    LOC_QUESTION_UPLOAD_BTN = (By.XPATH, '//button[@class="btn upld-q "]')
+    LOC_NEXT_CREATE_QUESTION_BTN = (By.XPATH, '//button[@class="btn btn-primary ml-auto font-weight-semibold"]')
 
     def LOC_DATE_PICKER(self, day, month, year):
         locators = (By.XPATH, '//td[@data-value="'+day+'" and @data-month="'+month+'" and @data-year="'+year+'"]')
@@ -200,9 +201,21 @@ class AssessmentKM(MyGenericMethods):
         self.sendkeys_to(self.LOC_INSTRUCTION_TEXT_FIELD, input_instruction)
         self.switch_to_default_frame()
 
-    def click_create_question_btn(self):
-        self.click_to(self.LOC_CREATE_QUESTION_BTN)
-
     def cancel_create_assessment(self):
         self.click_to(self.LOC_CANCEL_CREATE_ASSESSMENT_BTN)
         self.accept_alert()
+
+    def create_question_new(self):  # Function for create question with create new question option
+        self.click_to(self.LOC_CREATE_QUESTION_BTN)
+        self.click_to(self.LOC_QUESTION_NEW_BTN)
+        self.click_to(self.LOC_NEXT_CREATE_QUESTION_BTN)
+
+    def create_question_test_bank(self):  # Function for create question from test bank option
+        self.click_to(self.LOC_CREATE_QUESTION_BTN)
+        self.click_to(self.LOC_QUESTION_TEST_BANK_BTN)
+        self.click_to(self.LOC_NEXT_CREATE_QUESTION_BTN)
+
+    def create_question_upload(self):  # Function for create question using upload question file option
+        self.click_to(self.LOC_CREATE_QUESTION_BTN)
+        self.click_to(self.LOC_QUESTION_UPLOAD_BTN)
+        self.click_to(self.LOC_NEXT_CREATE_QUESTION_BTN)
