@@ -197,7 +197,6 @@ class AssessmentKM(MyGenericMethods):
 
     def input_instruction(self, input_instruction):
         self.switch_frame(self.LOC_TEXT_EDITOR_FRAME)
-        self.click_to(self.LOC_INSTRUCTION_TEXT_FIELD)
         self.sendkeys_to(self.LOC_INSTRUCTION_TEXT_FIELD, input_instruction)
         self.switch_to_default_frame()
 

@@ -1,10 +1,11 @@
 import time
-from selenium.webdriver import ActionChains, Keys, Remote
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 """This class is the parent of all pages - It contains all the generic methods and utilities for all the pages"""
+
 
 class MyGenericMethods:
 
@@ -13,7 +14,7 @@ class MyGenericMethods:
 
     def click_to(self, input_locator_or_element):
         if isinstance(input_locator_or_element, tuple):
-            WebDriverWait(self.driver, 120).until(EC.visibility_of_element_located(input_locator_or_element)).click()
+            WebDriverWait(self.driver, 240).until(EC.visibility_of_element_located(input_locator_or_element)).click()
         elif isinstance(input_locator_or_element, WebElement):
             input_locator_or_element.click()
         else:
