@@ -30,6 +30,7 @@ class TestAssessmentKM:
         assessment_km.set_result_type_dropdown_list("grade_with_submission_detail")  # result type input = grade_with_submission_detail / grade_only
         assessment_km.set_publish_schedule("publish_immediately")  # public schedule input : publish_immediately / publish_for_future
         assessment_km.input_instruction(TestData.ASSESSMENT_TITLE)
-        assessment_km.create_question_new()
-        create_question.create_mcq_question(3, 4)  # input : number_of_question = 1 / 2 / 3 , number_choices = 3 / 4 / 5
+        assessment_km.click_create_question_new()
+        # create_question.create_mcq_question(3, 3)  # input : number_of_question = 1 / 2 / 3 , number_choices = 3 / 4 / 5
+        create_question.create_essay_question(10)
         time.sleep(5)

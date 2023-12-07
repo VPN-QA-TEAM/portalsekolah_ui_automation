@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from Pages.BaseMethod import MyGenericMethods
 from Config.dataconfig import TestData
 
@@ -17,16 +16,18 @@ class CreateQuestion(MyGenericMethods):
     LOC_ANSWER_D_DELETE_BTN = (By.XPATH, '//form[@class="question-form"]/div[5]//button[@class="btn btn-link btn-delete-field"]')
     LOC_ADD_CHOICES_BTN = (By.XPATH, '//span[@class="ml-4 btn btn-link text-primary"]')
     LOC_CREATE_QUESTION_BTN = (By.XPATH, '//button[@class="btn btn-sm btn-primary font-weight-semibold mr-3 px-3 py-2"]')
+    LOC_QUESTION_TYPE_DROPDOWN = (By.XPATH, '//button[@class="btn btn-outline-options btn-sm dropdown-toggle"]')
+    LOC_ESSAY_TYPE_DROPDOWN_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[2]')
 
     """Constructor of the page class"""
     def __init__(self, driver):
         super().__init__(driver)
 
-    def create_mcq_question(self, number_of_question, number_of_choices):
+    def create_mcq_question(self, number_of_question, number_of_choices):  # Function for create MCQ type question
         answers = ["A", "B", "C", "D", "E"]
         choices = number_of_choices
 
-        def mcq_3_answers_options():
+        def mcq_3_answers_options():  # Function for create MCQ with 3 choices answers
             for i in range(number_of_question):
                 LOC_ANSWERS = (By.XPATH, '//span[.="' + answers[i] + '"]')
                 self.click_to(self.LOC_ANSWER_D_DELETE_BTN)
@@ -45,7 +46,7 @@ class CreateQuestion(MyGenericMethods):
                 self.click_to(LOC_ANSWERS)
                 self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
-        def mcq_4_answers_options():
+        def mcq_4_answers_options():  # Function for create MCQ with 4 choices answers
             for i in range(number_of_question):
                 LOC_ANSWERS = (By.XPATH, '//span[.="'+answers[i]+'"]')
                 self.switch_frame(self.LOC_QUESTION_FRAME)
@@ -66,7 +67,7 @@ class CreateQuestion(MyGenericMethods):
                 self.click_to(LOC_ANSWERS)
                 self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
-        def mcq_5_answers_options():
+        def mcq_5_answers_options():  # Function for create MCQ with 5 choices answers
             for i in range(number_of_question):
                 LOC_ANSWERS = (By.XPATH, '//span[.="'+answers[i]+'"]')
                 self.move_to_element(self.LOC_ADD_CHOICES_BTN)
@@ -99,4 +100,14 @@ class CreateQuestion(MyGenericMethods):
             mcq_4_answers_options()
         elif choices == 5:
             mcq_5_answers_options()
+        else:
+            print("Invalid Input Only Accept 3/4/5")
 
+    def create_essay_question(self, number_of_question):
+        for i in range(number_of_question):
+            self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+            self.click_to(self.LOC_ESSAY_TYPE_DROPDOWN_BTN)
+            self.switch_frame(self.LOC_QUESTION_FRAME)
+            self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan ESSAY ' + str(i + 1))
+            self.switch_to_default_frame()
+            self.click_to(self.LOC_CREATE_QUESTION_BTN)

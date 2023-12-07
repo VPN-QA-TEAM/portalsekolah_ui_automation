@@ -204,17 +204,17 @@ class AssessmentKM(MyGenericMethods):
         self.click_to(self.LOC_CANCEL_CREATE_ASSESSMENT_BTN)
         self.accept_alert()
 
-    def create_question_new(self):  # Function for create question with create new question option
+    def click_create_question_new(self):  # Function for create question with create new question option
         self.click_to(self.LOC_CREATE_QUESTION_BTN)
         self.click_to(self.LOC_QUESTION_NEW_BTN)
         self.click_to(self.LOC_NEXT_CREATE_QUESTION_BTN)
 
-    def create_question_test_bank(self):  # Function for create question from test bank option
+    def click_create_question_test_bank(self):  # Function for create question from test bank option
         self.click_to(self.LOC_CREATE_QUESTION_BTN)
         self.click_to(self.LOC_QUESTION_TEST_BANK_BTN)
         self.click_to(self.LOC_NEXT_CREATE_QUESTION_BTN)
 
-    def create_question_upload(self):  # Function for create question using upload question file option
+    def click_create_question_upload(self):  # Function for create question using upload question file option
         self.click_to(self.LOC_CREATE_QUESTION_BTN)
         self.click_to(self.LOC_QUESTION_UPLOAD_BTN)
         self.click_to(self.LOC_NEXT_CREATE_QUESTION_BTN)
