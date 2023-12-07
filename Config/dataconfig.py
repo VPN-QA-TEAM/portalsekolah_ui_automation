@@ -44,3 +44,11 @@ class TestData:
 
     """this is all test data for fill assessment data"""
     ASSESSMENT_TITLE = "TC_KM.01"
+    MCQ_QUESTION1 = "Pertanyaan 1"
+    MCQ_QUESTION2 = "Pertanyaan 2"
+    MCQ_QUESTION3 = "Pertanyaan 3"
+    CHOICES_A = "Pilihan A"
+    CHOICES_B = "Pilihan B"
+    CHOICES_C = "Pilihan C"
+    CHOICES_D = "Pilihan D"
+    CHOICES_E = "Pilihan E"

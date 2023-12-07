@@ -3,6 +3,7 @@ from Config.dataconfig import TestData
 from Pages.LoginPage import Login
 from Pages.DashboardPage import Dashboard
 from Pages.AssessmentKmPage import AssessmentKM
+from Pages.CreateAssessmentQuestionPage import CreateQuestion
 import time
 
 
@@ -14,6 +15,7 @@ class TestAssessmentKM:
         login = Login(self.driver)
         dashboard = Dashboard(self.driver)
         assessment_km = AssessmentKM(self.driver)
+        create_question = CreateQuestion(self.driver)
         login.do_login(TestData.USERID_TEACHER_KM, TestData.VALID_PASSWORD)
         dashboard.is_modal_email_after_login_visible()
         dashboard.click_sidebar_assessment_menu()
@@ -29,4 +31,5 @@ class TestAssessmentKM:
         assessment_km.set_publish_schedule("publish_immediately")  # public schedule input : publish_immediately / publish_for_future
         assessment_km.input_instruction(TestData.ASSESSMENT_TITLE)
         assessment_km.create_question_new()
+        create_question.create_mcq_question(3, 4)  # input : number_of_question = 1 / 2 / 3 , number_choices = 3 / 4 / 5
         time.sleep(5)
