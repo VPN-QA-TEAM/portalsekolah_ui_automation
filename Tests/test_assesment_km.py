@@ -32,5 +32,6 @@ class TestAssessmentKM:
         assessment_km.input_instruction(TestData.ASSESSMENT_TITLE)
         assessment_km.click_create_question_new()
         # create_question.create_mcq_question(3, 3)  # input : number_of_question = 1 / 2 / 3 , number_choices = 3 / 4 / 5
-        create_question.create_essay_question(10)
+        # create_question.create_essay_question(10)  # input : input the wanted amount of question
+        create_question.create_mcc_question(3, 4)  # input : number_of_question = 1 / 2 / 3 , number_choices = 3 / 4 / 5
         time.sleep(5)
