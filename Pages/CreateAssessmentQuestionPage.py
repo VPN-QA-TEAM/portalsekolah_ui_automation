@@ -263,8 +263,8 @@ class CreateQuestion(MyGenericMethods):
                     for bde in lis:
                         self.click_to((By.XPATH, self.LOC_CHECKBOX_MCC.format(bde)))
                 elif set(choose_correct_answers) == {'C', 'D', 'E'}:
-                    for ace in range(4, 7):
-                        self.click_to((By.XPATH, self.LOC_CHECKBOX_MCC.format(ace)))
+                    for cde in range(4, 7):
+                        self.click_to((By.XPATH, self.LOC_CHECKBOX_MCC.format(cde)))
                 else:
                     raise ValueError("Number of Choices anda hanya 5, hanya bs pilih A-E, periksa lagi ya!")
             else:
