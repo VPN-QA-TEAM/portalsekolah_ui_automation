@@ -19,11 +19,6 @@ class CreateQuestion(MyGenericMethods):
     LOC_QUESTION_TYPE_DROPDOWN = (By.XPATH, '//button[@class="btn btn-outline-options btn-sm dropdown-toggle"]')
     LOC_ESSAY_TYPE_DROPDOWN_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[2]')
     LOC_TYPE_MCC_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[6]')
-    LOC_CHECKBOX_A_MCC_ANSWER = (By.XPATH, "//form[1]/div[2]/div[1]")
-    LOC_CHECKBOX_B_MCC_ANSWER = (By.XPATH, "//form[1]/div[3]/div[1]")
-    LOC_CHECKBOX_C_MCC_ANSWER = (By.XPATH, "//form[1]/div[4]/div[1]")
-    LOC_CHECKBOX_D_MCC_ANSWER = (By.XPATH, "//form[1]/div[5]/div[1]")
-    LOC_CHECKBOX_E_MCC_ANSWER = (By.XPATH, "//form[1]/div[6]/div[1]")
     LOC_CHECKBOX_MCC = "//form[1]/div[{}]/div[1]"   # div[{index}] :  2=A, 3=B, 4=C, 5=D, dst...
 
     """Constructor of the page class"""
