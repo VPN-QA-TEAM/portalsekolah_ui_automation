@@ -37,8 +37,14 @@ class TestAssessmentKM:
         '''--------------------- THIS IS QUESTION CREATOR SECTION PAGE:----------------------------------------'''
 
         '''MCQ Creator - parameter input : 
-        number_of_question = 1 / 2 / 3, number_choices = 3 / 4 / 5'''
-        # create_question.create_mcq_question(3, 3)
+        number_of_question = 1 / 2 / 3, number_choices = 3 / 4 / 5
+        # List of answer option for 3 choices answer is limited only A - C
+        # List of answer option for 3 choices answer is limited only A - D
+        # List of answer option for 3 choices answer is limited only A - E '''
+        create_question.create_mcq_question(
+            3,
+            3,
+            "A")
 
         '''ESSAY Creator - parameter input : number_of_question = 1 / 2 / 3'''
         # create_question.create_essay_question(10)
@@ -46,11 +52,14 @@ class TestAssessmentKM:
         '''MCC Creator - Parameter Input : 
         # number_of_question= Masukkan Jumlah Soal MCC yang akan dibuat(bebas, format:angka)
         # number_choices = untuk saat ini hanya bisa input angka 3, 4, dan 5 
-        # choose_correct_answer = Contoh penginputan ->  ["A"] : untuk jawaban benar A, 
-                                                 ["A","B"] utk jawaban benar A & B   '''
-        create_question.create_mcc_question(
-            number_of_question=2,
-            number_of_choices=5,
-            choose_correct_answers=["E", "C", "D"])
+        # choose_correct_answer = Contoh penginputan ->  ['A'] : untuk jawaban benar A, 
+                                                         ['A','B'] utk jawaban benar A & B   
+        # List of answer option for 3 choices answer is limited only A - C
+        # List of answer option for 3 choices answer is limited only A - D
+        # List of answer option for 3 choices answer is limited only A - E '''
+        # create_question.create_mcc_question(
+        #     2,
+        #     5,
+        #     ['E', 'A', 'C'])
 
         time.sleep(6)
