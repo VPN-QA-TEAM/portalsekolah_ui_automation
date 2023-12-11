@@ -1,3 +1,7 @@
+from faker import Faker
+
+sample = Faker()
+
 class TestData:
 
     """this is base of url"""
@@ -43,7 +47,7 @@ class TestData:
     USERID_STUDENT16 = "siswa_auto_16"
 
     """this is all test data for fill assessment data"""
-    ASSESSMENT_TITLE = "TC_KM.01"
+    ASSESSMENT_TITLE = "TC_KM.01 " + sample.first_name()
     MCQ_QUESTION1 = "Pertanyaan 1"
     MCQ_QUESTION2 = "Pertanyaan 2"
     MCQ_QUESTION3 = "Pertanyaan 3"
