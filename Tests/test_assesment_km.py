@@ -41,10 +41,10 @@ class TestAssessmentKM:
         # List of answer option for 3 choices answer is limited only A - C
         # List of answer option for 3 choices answer is limited only A - D
         # List of answer option for 3 choices answer is limited only A - E '''
-        create_question.create_mcq_question(
-            3,
-            3,
-            "A")
+        # create_question.create_mcq_question(
+        #     3,
+        #     3,
+        #     "A")
 
         '''ESSAY Creator - parameter input : number_of_question = 1 / 2 / 3'''
         # create_question.create_essay_question(10)
@@ -52,8 +52,8 @@ class TestAssessmentKM:
         '''MCC Creator - Parameter Input : 
         # number_of_question= Masukkan Jumlah Soal MCC yang akan dibuat(bebas, format:angka)
         # number_choices = untuk saat ini hanya bisa input angka 3, 4, dan 5 
-        # choose_correct_answer = Contoh penginputan ->  ['A'] : untuk jawaban benar A, 
-                                                         ['A','B'] utk jawaban benar A & B   
+        # choose_correct_answer = Contoh penginputan -> ['A'] : untuk jawaban benar A, 
+                                                        ['A','B'] utk jawaban benar A & B   
         # List of answer option for 3 choices answer is limited only A - C
         # List of answer option for 3 choices answer is limited only A - D
         # List of answer option for 3 choices answer is limited only A - E '''
@@ -62,4 +62,14 @@ class TestAssessmentKM:
         #     5,
         #     ['E', 'A', 'C'])
 
-        time.sleep(6)
+        '''True/False Creator - parameter input :
+        # number_of_question = 1 / 2 / 3
+        # correct_answer = true / false (Case Sensitive) '''
+        # create_question.create_truefalse_question(3, "false")
+
+        '''Matching Creator - parameter input :
+                # number_of_question = 1 / 2 / 3
+                # number_of_question = 3 / 4 / 5 '''
+        create_question.create_matching_question(2, 5)
+
+        time.sleep(5)
