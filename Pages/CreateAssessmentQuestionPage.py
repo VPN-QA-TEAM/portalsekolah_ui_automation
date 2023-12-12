@@ -21,6 +21,14 @@ class CreateQuestion(MyGenericMethods):
     LOC_ESSAY_TYPE_DROPDOWN_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[2]')
     LOC_TYPE_MCC_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[6]')
     LOC_CHECKBOX_MCC = "//form[1]/div[{}]/div[1]"   # div[{index}] :  2=A, 3=B, 4=C, 5=D, dst...
+    LOC_TF_TYPE_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]/button[5]')  # Locator for True / False list option
+    LOC_TF_ANSWER_BTN = '//div[@class="custom-toggle-container mr-3"]/button[{}]'
+    LOC_MATCHING_TYPE_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[4]')  # Locator for Matching list option
+    LOC_SET_TABLIST_BTN = '//div[@class="nav-tabs-test-bank match-set flex-grow-1 nav"]/div[{}]'
+    LOC_SET_QUESTION_FRAME = (By.XPATH, '//div[@class="tab-matching-content tab-content"]//iframe')
+    LOC_SET_ANSWER = (By.XPATH, '//textarea[@class="mt-3 form-control"]')
+    LOC_DELETE_SET_4_BTN = (By.XPATH, '//button[@class="btn btn-cancel ml-2 cursorPointer"]')
+    LOC_ADD_SET_BTN = (By.XPATH, '//button[@class="btn btn-outline-primary btn-set-add"]')
 
     """Constructor of the page class"""
     def __init__(self, driver):
@@ -32,7 +40,6 @@ class CreateQuestion(MyGenericMethods):
 
         def mcq_3_answers_options():  # Function for create MCQ with 3 choices answers
             for i in range(number_of_question):
-                # LOC_ANSWERS = (By.XPATH, '//span[.="' + answers[i] + '"]')
                 self.click_to(self.LOC_ANSWER_D_DELETE_BTN)
                 self.switch_frame(self.LOC_QUESTION_FRAME)
                 self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan PG ' + str(i + 1))
@@ -51,7 +58,6 @@ class CreateQuestion(MyGenericMethods):
 
         def mcq_4_answers_options():  # Function for create MCQ with 4 choices answers
             for i in range(number_of_question):
-                # LOC_ANSWERS = (By.XPATH, '//span[.="' + answers[i] + '"]')
                 self.switch_frame(self.LOC_QUESTION_FRAME)
                 self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan PG ' + str(i+1))
                 self.switch_to_default_frame()
@@ -67,12 +73,10 @@ class CreateQuestion(MyGenericMethods):
                 self.switch_frame(self.LOC_QUESTION_ANSWER_D_FRAME)
                 self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, TestData.CHOICES_D)
                 self.switch_to_default_frame()
-                # self.click_to(LOC_ANSWERS)
                 self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
         def mcq_5_answers_options():  # Function for create MCQ with 5 choices answers
             for i in range(number_of_question):
-                # LOC_ANSWERS = (By.XPATH, '//span[.="' + answers[i] + '"]')
                 self.move_to_element(self.LOC_ADD_CHOICES_BTN)
                 self.click_to(self.LOC_ADD_CHOICES_BTN)
                 self.move_to_element(self.LOC_QUESTION_FRAME)
@@ -94,19 +98,16 @@ class CreateQuestion(MyGenericMethods):
                 self.switch_frame(self.LOC_QUESTION_ANSWER_E_FRAME)
                 self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, TestData.CHOICES_E)
                 self.switch_to_default_frame()
-                # self.click_to(LOC_ANSWERS)
                 self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
-        mcq_3_answers_options()
-
-        # if choices == 3:
-        #     mcq_3_answers_options()
-        # elif choices == 4:
-        #     mcq_4_answers_options()
-        # elif choices == 5:
-        #     mcq_5_answers_options()
-        # else:
-        #     print("Invalid Input Only Accept 3/4/5")
+        if choices == 3:
+            mcq_3_answers_options()
+        elif choices == 4:
+            mcq_4_answers_options()
+        elif choices == 5:
+            mcq_5_answers_options()
+        else:
+            print("Invalid Input Only Accept 3/4/5")
 
     def create_essay_question(self, number_of_question):
         for i in range(number_of_question):
@@ -199,3 +200,76 @@ class CreateQuestion(MyGenericMethods):
             mcc_4_answers_options()
         elif number_of_choices == 5:
             mcc_5_answers_options()
+
+    def create_truefalse_question(self, number_of_question, correct_answer):
+        for i in range(number_of_question):
+            self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+            self.click_to(self.LOC_TF_TYPE_BTN)
+            self.switch_frame(self.LOC_QUESTION_FRAME)
+            self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan True / False ' + str(i + 1))
+            self.switch_to_default_frame()
+            if correct_answer == "true":
+                self.click_to((By.XPATH, self.LOC_TF_ANSWER_BTN.format(1)))
+            elif correct_answer == "false":
+                self.click_to((By.XPATH, self.LOC_TF_ANSWER_BTN.format(2)))
+            self.click_to(self.LOC_CREATE_QUESTION_BTN)
+
+    def create_matching_question(self, number_of_question, number_of_set):
+        answer = ["A", "B", "C", "D", "E"]
+
+        def matching_3_set():
+            for i in range(number_of_question):
+                self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+                self.click_to(self.LOC_MATCHING_TYPE_BTN)
+                self.click_to((By.XPATH, self.LOC_SET_TABLIST_BTN.format(4)))
+                self.click_to(self.LOC_DELETE_SET_4_BTN)
+                self.switch_frame(self.LOC_QUESTION_FRAME)
+                self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan Matching ' + str(i + 1))
+                self.switch_to_default_frame()
+                for x in range(number_of_set):
+                    self.click_to((By.XPATH, self.LOC_SET_TABLIST_BTN.format(x+1)))
+                    self.switch_frame(self.LOC_SET_QUESTION_FRAME)
+                    self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, answer[x])
+                    self.switch_to_default_frame()
+                    self.sendkeys_to(self.LOC_SET_ANSWER, answer[x])
+                self.click_to(self.LOC_CREATE_QUESTION_BTN)
+
+        def matching_4_set():
+            for i in range(number_of_question):
+                self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+                self.click_to(self.LOC_MATCHING_TYPE_BTN)
+                self.switch_frame(self.LOC_QUESTION_FRAME)
+                self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan Matching ' + str(i + 1))
+                self.switch_to_default_frame()
+                for x in range(number_of_set):
+                    self.click_to((By.XPATH, self.LOC_SET_TABLIST_BTN.format(x+1)))
+                    self.switch_frame(self.LOC_SET_QUESTION_FRAME)
+                    self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, answer[x])
+                    self.switch_to_default_frame()
+                    self.sendkeys_to(self.LOC_SET_ANSWER, answer[x])
+                self.click_to(self.LOC_CREATE_QUESTION_BTN)
+
+        def matching_5_set():
+            for i in range(number_of_question):
+                self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+                self.click_to(self.LOC_MATCHING_TYPE_BTN)
+                self.click_to(self.LOC_ADD_SET_BTN)
+                self.switch_frame(self.LOC_QUESTION_FRAME)
+                self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, 'Pertanyaan Matching ' + str(i + 1))
+                self.switch_to_default_frame()
+                for x in range(number_of_set):
+                    self.click_to((By.XPATH, self.LOC_SET_TABLIST_BTN.format(x+1)))
+                    self.switch_frame(self.LOC_SET_QUESTION_FRAME)
+                    self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, answer[x])
+                    self.switch_to_default_frame()
+                    self.sendkeys_to(self.LOC_SET_ANSWER, answer[x])
+                self.click_to(self.LOC_CREATE_QUESTION_BTN)
+
+        if number_of_set == 3:
+            matching_3_set()
+        elif number_of_set == 4:
+            matching_4_set()
+        elif number_of_set == 5:
+            matching_5_set()
+        else:
+            raise ValueError("Invalid Number of Set, Please Check Your Input!")
