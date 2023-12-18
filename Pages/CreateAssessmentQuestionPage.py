@@ -29,6 +29,12 @@ class CreateQuestion(MyGenericMethods):
     LOC_SET_ANSWER = (By.XPATH, '//textarea[@class="mt-3 form-control"]')
     LOC_DELETE_SET_4_BTN = (By.XPATH, '//button[@class="btn btn-cancel ml-2 cursorPointer"]')
     LOC_ADD_SET_BTN = (By.XPATH, '//button[@class="btn btn-outline-primary btn-set-add"]')
+    LOC_SHORT_ANSWER_TYPE_BTN = (By.XPATH, '//div[@class="dropdown-menu show"]//button[7]')
+    LOC_IGNORE_UPPERCASE_CHECKBOX = (By.XPATH, '//input[@id="ignoreCaseCheck"]/following-sibling::label[@for="ignoreCaseCheck"]')
+    LOC_UPLOAD_FILE_QUESTION = (By.XPATH, '//div[@class="dropdown-menu show"]//button[3]')
+    LOC_UPLOAD_FILE_FIELD = (By.XPATH, '//label[@class="form-control-file form-control"]')
+    LOC_INPUT_FILE_FIELD = (By.XPATH, '//input[@type="file"]')
+
 
     """Constructor of the page class"""
     def __init__(self, driver):
@@ -273,3 +279,23 @@ class CreateQuestion(MyGenericMethods):
             matching_5_set()
         else:
             raise ValueError("Invalid Number of Set, Please Check Your Input!")
+
+    def create_short_answer_question(self, number_of_question, question_text, answer_text):
+        for i in range(number_of_question):
+            self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+            self.click_to(self.LOC_SHORT_ANSWER_TYPE_BTN)
+            self.switch_frame(self.LOC_QUESTION_FRAME)
+            self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, question_text + ' ' + str(i+1) + ' {{'+answer_text+'}}')
+            self.switch_to_default_frame()
+            self.click_to(self.LOC_IGNORE_UPPERCASE_CHECKBOX)
+            self.click_to(self.LOC_CREATE_QUESTION_BTN)
+
+    def create_upload_file_question(self, number_of_question):
+        self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+        self.click_to(self.LOC_UPLOAD_FILE_QUESTION)
+        self.click_to(self.LOC_UPLOAD_FILE_FIELD)
+        self.sendkeys_to(self.LOC_INPUT_FILE_FIELD, r'C:\Users\Khairun\Documents\TESTING_FILE')
+        # for i in range(number_of_question):
+        #     self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
+        #     self.click_to(self.LOC_UPLOAD_FILE_QUESTION)
+        #     self.switch_frame(self.LOC_QUESTION_FRAME)
