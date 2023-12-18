@@ -72,4 +72,15 @@ class TestAssessmentKM:
                 # number_of_question = 3 / 4 / 5 '''
         create_question.create_matching_question(2, 5)
 
+        '''Matching Creator - parameter input :
+                        # number_of_question = 1 / 2 / 3
+                        # question_text = input any question
+                        # answer_text = Answer or Answer1|Answer2|Answer3 (for multiple answer)'''
+        # create_question.create_short_answer_question(
+        #     10,
+        #     "Pertanyaan",
+        #     "Jawaban1|Jawaban2|Jawaban3")
+
+        # create_question.create_upload_file_question(2)
+
         time.sleep(5)
