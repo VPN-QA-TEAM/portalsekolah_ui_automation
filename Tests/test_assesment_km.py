@@ -81,6 +81,8 @@ class TestAssessmentKM:
         #     "Pertanyaan",
         #     "Jawaban1|Jawaban2|Jawaban3")
 
-        # create_question.create_upload_file_question(2)
+        '''--------------------- END OF QUESTION CREATOR SECTION PAGE:----------------------------------------'''
+
+        create_question.click_publish_btn()
 
         time.sleep(5)

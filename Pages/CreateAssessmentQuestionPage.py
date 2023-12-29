@@ -1,6 +1,9 @@
+import time
+
 from selenium.webdriver.common.by import By
 from Pages.BaseMethod import MyGenericMethods
 from Config.dataconfig import TestData
+import os
 
 
 class CreateQuestion(MyGenericMethods):
@@ -34,6 +37,8 @@ class CreateQuestion(MyGenericMethods):
     LOC_UPLOAD_FILE_QUESTION = (By.XPATH, '//div[@class="dropdown-menu show"]//button[3]')
     LOC_UPLOAD_FILE_FIELD = (By.XPATH, '//label[@class="form-control-file form-control"]')
     LOC_INPUT_FILE_FIELD = (By.XPATH, '//input[@type="file"]')
+    LOC_PUBLISH_BTN = (By.XPATH, '//div[@class="btn btn-primary rounded-pill font-weight-semibold"]')
+    LOC_CONFIRM_PUBLISH_BTN = (By.XPATH, '//button[@class="btn yesDeleteMeeting  "]')
 
 
     """Constructor of the page class"""
@@ -290,12 +295,7 @@ class CreateQuestion(MyGenericMethods):
             self.click_to(self.LOC_IGNORE_UPPERCASE_CHECKBOX)
             self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
-    def create_upload_file_question(self, number_of_question):
-        self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
-        self.click_to(self.LOC_UPLOAD_FILE_QUESTION)
-        self.click_to(self.LOC_UPLOAD_FILE_FIELD)
-        self.sendkeys_to(self.LOC_INPUT_FILE_FIELD, r'C:\Users\Khairun\Documents\TESTING_FILE')
-        # for i in range(number_of_question):
-        #     self.click_to(self.LOC_QUESTION_TYPE_DROPDOWN)
-        #     self.click_to(self.LOC_UPLOAD_FILE_QUESTION)
-        #     self.switch_frame(self.LOC_QUESTION_FRAME)
+    def click_publish_btn(self):
+        time.sleep(3)
+        self.click_to(self.LOC_PUBLISH_BTN)
+        self.click_to(self.LOC_CONFIRM_PUBLISH_BTN)
