@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from Pages.BaseMethod import MyGenericMethods
-import time
+
 
 class Login(MyGenericMethods):
 
@@ -16,6 +16,7 @@ class Login(MyGenericMethods):
 
     """Login Functions"""
     def do_login(self, userid, password):
+        self.clear_field(self.LOC_USERID)
         self.sendkeys_to(self.LOC_USERID, userid)
         self.sendkeys_to(self.LOC_PASSWD, password)
         self.click_to(self.LOC_BTN_LOGIN)

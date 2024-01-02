@@ -3,7 +3,6 @@ import time
 from selenium.webdriver.common.by import By
 from Pages.BaseMethod import MyGenericMethods
 from Config.dataconfig import TestData
-import os
 
 
 class CreateQuestion(MyGenericMethods):
@@ -299,3 +298,4 @@ class CreateQuestion(MyGenericMethods):
         time.sleep(3)
         self.click_to(self.LOC_PUBLISH_BTN)
         self.click_to(self.LOC_CONFIRM_PUBLISH_BTN)
+
