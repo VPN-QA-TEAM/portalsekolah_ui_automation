@@ -21,7 +21,7 @@ class DashboardTeacher(MyGenericMethods):
     def do_verify_welcome_text(self, input_validation_message):
         welcome_text = self.get_element_text(self.LOC_TEACHER_WELCOME_TITLE)
         assert input_validation_message in welcome_text, "Gagal nih! welcome text beda!"
-        print("Success Login")
+        print("Success Login As Teacher")
 
     def is_modal_email_after_login_visible(self):
 
@@ -55,7 +55,7 @@ class DashboardStudent(MyGenericMethods):
     def do_verify_welcome_text(self, input_validation_message):
         welcome_text = self.get_element_text(self.LOC_STUDENT_WELCOME_TITLE)
         assert input_validation_message in welcome_text, "Gagal nih! welcome text beda!"
-        print("Success Login")
+        print("Success Login As Student")
 
     def is_modal_email_after_login_visible(self):
 

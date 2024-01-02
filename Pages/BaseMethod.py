@@ -14,7 +14,7 @@ class MyGenericMethods:
 
     def click_to(self, input_locator_or_element):
         if isinstance(input_locator_or_element, tuple):
-            WebDriverWait(self.driver, 240).until(EC.visibility_of_element_located(input_locator_or_element)).click()
+            WebDriverWait(self.driver, 300).until(EC.visibility_of_element_located(input_locator_or_element)).click()
         elif isinstance(input_locator_or_element, WebElement):
             input_locator_or_element.click()
         else:
@@ -35,7 +35,7 @@ class MyGenericMethods:
         return elements
 
     def is_visible(self, input_locator):
-        element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
+        element = WebDriverWait(self.driver, 300).until(EC.visibility_of_element_located(input_locator))
         return bool(element)
 
     def find_element(self, input_locator):
