@@ -1,9 +1,11 @@
 import pytest
 from Config.dataconfig import TestData
 from Pages.LoginPage import Login
-from Pages.DashboardPage import Dashboard
+from Pages.DashboardPage import DashboardTeacher
 from Pages.AssessmentKmPage import AssessmentKM
 from Pages.CreateAssessmentQuestionPage import CreateQuestion
+from Pages.LogoutPage import Logout
+from Pages.AssessmentAssertion import AssessmentAssertion
 import time
 
 
@@ -13,12 +15,14 @@ class TestAssessmentKM:
     @pytest.mark.doing
     def test_tc_km01(self):
         login = Login(self.driver)
-        dashboard = Dashboard(self.driver)
+        dashboard_teacher = DashboardTeacher(self.driver)
         assessment_km = AssessmentKM(self.driver)
         create_question = CreateQuestion(self.driver)
+        assessment_assertion = AssessmentAssertion(self.driver)
+        logout = Logout(self.driver)
         login.do_login(TestData.USERID_TEACHER_KM, TestData.VALID_PASSWORD)
-        dashboard.is_modal_email_after_login_visible()
-        dashboard.click_sidebar_assessment_menu()
+        dashboard_teacher.is_modal_email_after_login_visible()
+        dashboard_teacher.click_sidebar_assessment_menu()
 
         '''--------------------- THIS IS ASSESSMENT CREATOR SECTION PAGE:----------------------------------------'''
         assessment_km.do_verify_create_assessment_page("Buat Penilaian")
@@ -63,19 +67,19 @@ class TestAssessmentKM:
         #     ['E', 'A', 'C'])
 
         '''True/False Creator - parameter input :
-        # number_of_question = 1 / 2 / 3
-        # correct_answer = true / false (Case Sensitive) '''
+                # number_of_question = 1 / 2 / 3
+                # correct_answer = true / false (Case Sensitive) '''
         # create_question.create_truefalse_question(3, "false")
 
         '''Matching Creator - parameter input :
                 # number_of_question = 1 / 2 / 3
                 # number_of_question = 3 / 4 / 5 '''
-        create_question.create_matching_question(2, 5)
+        create_question.create_matching_question(2, 3)
 
         '''Matching Creator - parameter input :
-                        # number_of_question = 1 / 2 / 3
-                        # question_text = input any question
-                        # answer_text = Answer or Answer1|Answer2|Answer3 (for multiple answer)'''
+                # number_of_question = 1 / 2 / 3
+                # question_text = input any question
+                # answer_text = Answer or Answer1|Answer2|Answer3 (for multiple answer)'''
         # create_question.create_short_answer_question(
         #     10,
         #     "Pertanyaan",
@@ -84,5 +88,8 @@ class TestAssessmentKM:
         '''--------------------- END OF QUESTION CREATOR SECTION PAGE:----------------------------------------'''
 
         create_question.click_publish_btn()
+        assessment_assertion.do_verify_assessment_created_successfully_teacher()
+        logout.do_logout()
+        assessment_assertion.do_verify_assessment_created_successfully_student()
 
         time.sleep(5)
