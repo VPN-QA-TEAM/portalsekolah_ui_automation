@@ -83,6 +83,7 @@ class CreateQuestion(MyGenericMethods):
                 self.switch_frame(self.LOC_QUESTION_ANSWER_D_FRAME)
                 self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, TestData.CHOICES_D)
                 self.switch_to_default_frame()
+                self.click_to((By.XPATH, self.LOC_MCQ_ANSWER_BTN.format(answers.index(choose_correct_answers) + 2)))
                 self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
         def mcq_5_answers_options():  # Function for create MCQ with 5 choices answers
@@ -108,6 +109,7 @@ class CreateQuestion(MyGenericMethods):
                 self.switch_frame(self.LOC_QUESTION_ANSWER_E_FRAME)
                 self.sendkeys_to(self.LOC_FRAME_TEXT_FIELD, TestData.CHOICES_E)
                 self.switch_to_default_frame()
+                self.click_to((By.XPATH, self.LOC_MCQ_ANSWER_BTN.format(answers.index(choose_correct_answers) + 2)))
                 self.click_to(self.LOC_CREATE_QUESTION_BTN)
 
         if choices == 3:
