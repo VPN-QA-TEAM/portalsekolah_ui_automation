@@ -12,7 +12,7 @@ class AssessmentAssertion(MyGenericMethods):
     LOC_ASSESSMENT_TITLE_ASSERTION = (By.XPATH, '//h6[.="' + TestData.ASSESSMENT_TITLE + '"]')
     LOC_ASSESSMENT_CARD = (By.XPATH, '//h6[.="' + TestData.ASSESSMENT_TITLE + '"]/parent::div')
     LOC_ASSESSMENT_INSTRUCTION = (By.XPATH, '//p[.="'+TestData.ASSESSMENT_TITLE+'"]')
-    LOC_ASSESSMENT_TUTORIAL_MODAL_CLOSE_BTN =(By.XPATH, '//button[@title="Tutup"]')
+    LOC_ASSESSMENT_TUTORIAL_MODAL_CLOSE_BTN = (By.XPATH, '//button[@title="Tutup"]')
 
     """Constructor of the page class"""
     def __init__(self, driver):
@@ -39,4 +39,3 @@ class AssessmentAssertion(MyGenericMethods):
         get_assessment_instruction_text = self.get_element_text(self.LOC_ASSESSMENT_INSTRUCTION)
         assert TestData.ASSESSMENT_TITLE in get_assessment_instruction_text, "Assessment Instruction Text Not Match"
         print("Assessment Instruction Text Is Match")
-

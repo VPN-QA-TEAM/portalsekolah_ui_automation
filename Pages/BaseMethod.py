@@ -42,6 +42,10 @@ class MyGenericMethods:
         element = WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(input_locator))
         return element
 
+    def count_element(self, input_locator):
+        count_element = len(self.find_element(input_locator))
+        return count_element
+
     # def scroll_down_page(self):
     #     self.driver.execute_script("window.scrollTo(190, document.documentElement.scrollHeight);")
     #     time.sleep(1.5)  # Add a short delay to allow content loading (adjust as needed)

@@ -1,18 +1,19 @@
 import pytest
 from Config.dataconfig import TestData
 from Pages.LoginPage import Login
-from Pages.DashboardPage import DashboardTeacher
+from Pages.DashboardPage import DashboardTeacher, DashboardStudent
 from Pages.AssessmentKmPage import AssessmentKM
 from Pages.CreateAssessmentQuestionPage import CreateQuestion
 from Pages.LogoutPage import Logout
 from Pages.AssessmentAssertion import AssessmentAssertion
+from Pages.StudentDoingAssessmentPage import StudentDoAssessment
 import time
 
 
 @pytest.mark.usefixtures("setup_scope_function")
 class TestAssessmentKM:
 
-    @pytest.mark.doing
+    # @pytest.mark.doing
     def test_tc_km01(self):
         login = Login(self.driver)
         dashboard_teacher = DashboardTeacher(self.driver)
@@ -43,12 +44,12 @@ class TestAssessmentKM:
         '''MCQ Creator - parameter input : 
         number_of_question = 1 / 2 / 3, number_choices = 3 / 4 / 5
         # List of answer option for 3 choices answer is limited only A - C
-        # List of answer option for 3 choices answer is limited only A - D
-        # List of answer option for 3 choices answer is limited only A - E '''
-        # create_question.create_mcq_question(
-        #     3,
-        #     3,
-        #     "A")
+        # List of answer option for 4 choices answer is limited only A - D
+        # List of answer option for 5 choices answer is limited only A - E '''
+        create_question.create_mcq_question(
+            2,
+            4,
+            "D")
 
         '''ESSAY Creator - parameter input : number_of_question = 1 / 2 / 3'''
         # create_question.create_essay_question(10)
@@ -74,7 +75,7 @@ class TestAssessmentKM:
         '''Matching Creator - parameter input :
                 # number_of_question = 1 / 2 / 3
                 # number_of_question = 3 / 4 / 5 '''
-        create_question.create_matching_question(2, 3)
+        # create_question.create_matching_question(2, 3)
 
         '''Matching Creator - parameter input :
                 # number_of_question = 1 / 2 / 3
@@ -93,3 +94,17 @@ class TestAssessmentKM:
         assessment_assertion.do_verify_assessment_created_successfully_student()
 
         time.sleep(5)
+
+    @pytest.mark.doing
+    def test_student_doing_tc_km01(self):
+        login = Login(self.driver)
+        dashboard_student = DashboardStudent(self.driver)
+        student_doing_assessment = StudentDoAssessment(self.driver)
+        login.do_login(TestData.USERID_STUDENT9, TestData.VALID_PASSWORD)
+        dashboard_student.is_modal_email_after_login_visible()
+        student_doing_assessment.go_to_assessment_page()
+        student_doing_assessment.click_chosen_assessment()
+        student_doing_assessment.student_click_start_assessment()
+        student_doing_assessment.student_answer_assessment("D")
+
+        time.sleep(3)
