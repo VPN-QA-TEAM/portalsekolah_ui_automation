@@ -46,10 +46,10 @@ class TestAssessmentKM:
         # List of answer option for 3 choices answer is limited only A - C
         # List of answer option for 4 choices answer is limited only A - D
         # List of answer option for 5 choices answer is limited only A - E '''
-        create_question.create_mcq_question(
-            2,
-            4,
-            "D")
+        # create_question.create_mcq_question(
+        #     2,
+        #     4,
+        #     "D")
 
         '''ESSAY Creator - parameter input : number_of_question = 1 / 2 / 3'''
         # create_question.create_essay_question(10)
@@ -70,7 +70,7 @@ class TestAssessmentKM:
         '''True/False Creator - parameter input :
                 # number_of_question = 1 / 2 / 3
                 # correct_answer = true / false (Case Sensitive) '''
-        # create_question.create_truefalse_question(3, "false")
+        # create_question.create_truefalse_question(2, "true")
 
         '''Matching Creator - parameter input :
                 # number_of_question = 1 / 2 / 3
@@ -81,10 +81,10 @@ class TestAssessmentKM:
                 # number_of_question = 1 / 2 / 3
                 # question_text = input any question
                 # answer_text = Answer or Answer1|Answer2|Answer3 (for multiple answer)'''
-        # create_question.create_short_answer_question(
-        #     10,
-        #     "Pertanyaan",
-        #     "Jawaban1|Jawaban2|Jawaban3")
+        create_question.create_short_answer_question(
+            10,
+            "Pertanyaan",
+            "Jawaban1|Jawaban2|Jawaban3")
 
         '''--------------------- END OF QUESTION CREATOR SECTION PAGE:----------------------------------------'''
 
@@ -105,6 +105,9 @@ class TestAssessmentKM:
         student_doing_assessment.go_to_assessment_page()
         student_doing_assessment.click_chosen_assessment()
         student_doing_assessment.student_click_start_assessment()
-        student_doing_assessment.student_answer_assessment("D")
+        student_doing_assessment.student_answer_assessment(
+            "A",
+            "true",
+            "Jawaban")
 
         time.sleep(3)
