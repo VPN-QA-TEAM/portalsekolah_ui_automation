@@ -108,6 +108,7 @@ class TestAssessmentKM:
         student_doing_assessment.student_answer_assessment(
             "A",
             "true",
-            "Jawaban")
+            "Jawaban",
+            ["A", "B"])
 
         time.sleep(3)
