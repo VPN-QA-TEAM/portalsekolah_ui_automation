@@ -18,8 +18,11 @@ class StudentDoAssessment(MyGenericMethods):
     LOC_MCQ_CORRECT_ANSWER_CHOICES = '//div[@class="form-group row mb-1"][{}]'
     LOC_TRUE_FALSE_CORRECT_ANSWER_CHOICES = '//div[@class="form-control optionValBox standaloneOpt cursorPointer mb-3 "][{}]'
     LOC_SHORT_ANSWER_INPUT_FIELD = (By.XPATH, '//input[@class="form-control fillInInput"]')
+    LOC_MCC_CORRECT_ANSWER_CHOICES = '//div[@class="form"]/div[@class="form-group row mb-1 mx-0"][{}]'
     LOC_NEXT_BTN = (By.XPATH, '//button[@class="btn btn-primary"]')
     LOC_SUBMIT_BTN = (By.XPATH, ' //div[@class="assessment-submit-modal"]/button[@class="btn btn-blue-primary"]')
+    LOC_CONFIRM_SUBMIT_BTN = (By.XPATH, '//div[@class="modal-content p-4"]//button[@class="btn btn-blue-primary"]')
+    LOC_CANCEL_SUBMIT_BTN = (By.XPATH, '//button[@class="btn btn-outline-edit"]')
 
     """Constructor of the page class"""
     def __init__(self, driver):
@@ -42,7 +45,7 @@ class StudentDoAssessment(MyGenericMethods):
     def student_click_start_assessment(self):
         self.click_to(self.LOC_START_ASSESSMENT_BTN)
 
-    def student_answer_assessment(self, input_mcq_answer, input_true_false_answer, input_short_essay_answer):
+    def student_answer_assessment(self, input_mcq_answer, input_true_false_answer, input_short_essay_answer, input_mcc_answer):
         answers = ["A", "B", "C", "D", "E"]
         time.sleep(0.5)
         total_question = int(self.get_element_text(self.LOC_TOTAL_QUESTION))
@@ -50,7 +53,7 @@ class StudentDoAssessment(MyGenericMethods):
         def mcq_question_type():
             self.click_to((By.XPATH, self.LOC_MCQ_CORRECT_ANSWER_CHOICES.format(answers.index(input_mcq_answer) + 1)))
 
-        def true_false_question_Type():
+        def true_false_question_type():
             if input_true_false_answer == "true":
                 self.click_to((By.XPATH, self.LOC_TRUE_FALSE_CORRECT_ANSWER_CHOICES.format(1)))
             elif input_true_false_answer == "false":
@@ -59,17 +62,26 @@ class StudentDoAssessment(MyGenericMethods):
         def short_answer_question_type():
             self.sendkeys_to(self.LOC_SHORT_ANSWER_INPUT_FIELD, input_short_essay_answer)
 
+        def mcc_question_type():
+            for x in range(len(input_mcc_answer)):
+                self.click_to((By.XPATH, self.LOC_MCC_CORRECT_ANSWER_CHOICES.format(answers.index(input_mcc_answer[x])+1)))
+
+
         for i in range(total_question):
-            question_type = self.get_element_text(self.LOC_QUESTION_TYPE)  # Value : PG, BS, ...,
+            question_type = self.get_element_text(self.LOC_QUESTION_TYPE)  # Value : PG, BS, ..., PGK
 
             if question_type == "PG":
                 mcq_question_type()
             elif question_type == "BS":
-                true_false_question_Type()
+                true_false_question_type()
             elif question_type == "...":
                 short_answer_question_type()
+            elif question_type == "PGK":
+                mcc_question_type()
 
             if i == total_question - 1:
                 self.click_to(self.LOC_SUBMIT_BTN)
             else:
                 self.click_to(self.LOC_NEXT_BTN)
+
+        # self.click_to(self.LOC_CONFIRM_SUBMIT_BTN)
