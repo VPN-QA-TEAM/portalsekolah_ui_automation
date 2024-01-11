@@ -21,6 +21,7 @@ class TestAssessmentKM:
         create_question = CreateQuestion(self.driver)
         assessment_assertion = AssessmentAssertion(self.driver)
         logout = Logout(self.driver)
+
         login.do_login(TestData.USERID_TEACHER_KM, TestData.VALID_PASSWORD)
         dashboard_teacher.is_modal_email_after_login_visible()
         dashboard_teacher.click_sidebar_assessment_menu()
