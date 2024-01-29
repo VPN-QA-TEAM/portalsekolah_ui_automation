@@ -3,6 +3,5 @@ __pycache__/
 .pytest_cache/
 assets/
 pyvenv.cfg
-report.html
+*.html
 test_selftest.py
-
