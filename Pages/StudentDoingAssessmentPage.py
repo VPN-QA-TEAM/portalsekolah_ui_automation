@@ -75,21 +75,20 @@ class StudentDoAssessment(MyGenericMethods):
             total_matching_set = self.count_element(self.LOC_GET_TOTAL_MATCHING_SET)
 
             for x in range(total_matching_set):
-                time.sleep(3)
                 choices = self.get_element_text((By.XPATH, self.LOC_MATCHING_DRAG_CHOICES_ANSWER.format(x + 1)))
-
+                print(choices)
                 if choices == "A":
                     self.drag_drop_element((By.XPATH, self.LOC_MATCHING_DRAG_CHOICES_ANSWER.format(x+1)), (By.XPATH, self.LOC_MATCHING_DROP_ANSWER_TARGET.format(1)))
-                    print(x + 1, choices)
+                    # print(x + 1, choices)
                 elif choices == "B":
                     self.drag_drop_element((By.XPATH, self.LOC_MATCHING_DRAG_CHOICES_ANSWER.format(x+1)), (By.XPATH, self.LOC_MATCHING_DROP_ANSWER_TARGET.format(2)))
-                    print(x + 1, choices)
+                    # print(x + 1, choices)
                 elif choices == "C":
                     self.drag_drop_element((By.XPATH, self.LOC_MATCHING_DRAG_CHOICES_ANSWER.format(x+1)), (By.XPATH, self.LOC_MATCHING_DROP_ANSWER_TARGET.format(3)))
-                    print(x + 1, choices)
+                    # print(x + 1, choices)
                 elif choices == "D":
                     self.drag_drop_element((By.XPATH, self.LOC_MATCHING_DRAG_CHOICES_ANSWER.format(x+1)), (By.XPATH, self.LOC_MATCHING_DROP_ANSWER_TARGET.format(4)))
-                    print(x + 1, choices)
+                    # print(x + 1, choices)
                 elif choices == "E":
                     self.drag_drop_element((By.XPATH, self.LOC_MATCHING_DRAG_CHOICES_ANSWER.format(x+1)), (By.XPATH, self.LOC_MATCHING_DROP_ANSWER_TARGET.format(5)))
                     print(x + 1, choices)
