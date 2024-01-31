@@ -7,6 +7,7 @@ from Pages.CreateAssessmentQuestionPage import CreateQuestion
 from Pages.LogoutPage import Logout
 from Pages.AssessmentAssertion import AssessmentAssertion
 from Pages.StudentDoingAssessmentPage import StudentDoAssessment
+from Pages.TeacherVerifyAssessmentPage import TeacherVerifyAssessment
 import time
 
 
@@ -96,7 +97,7 @@ class TestAssessmentKM:
 
         time.sleep(5)
 
-    @pytest.mark.doing
+    # @pytest.mark.doing
     def test_student_doing_tc_km01(self):
         login = Login(self.driver)
         dashboard_student = DashboardStudent(self.driver)
@@ -112,4 +113,17 @@ class TestAssessmentKM:
             "Jawaban",
             ["A", "B"])
 
+        time.sleep(3)
+
+    @pytest.mark.doing
+    def test_teacher_verify_assessment(self):
+        login = Login(self.driver)
+        teacher_dashboard = DashboardTeacher(self.driver)
+        teacher_verify_assessment = TeacherVerifyAssessment(self.driver)
+        login.do_login(TestData.USERID_TEACHER_KM, TestData.VALID_PASSWORD)
+        teacher_dashboard.is_modal_email_after_login_visible()
+        teacher_dashboard.teacher_go_to_assessment_page()
+        teacher_verify_assessment.verify_assessment_list_page()
+        teacher_verify_assessment.teacher_choose_assessment_to_verify()
+        teacher_verify_assessment.techer_verify_chosen_assessment_title()
         time.sleep(3)

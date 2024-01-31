@@ -12,6 +12,7 @@ class DashboardTeacher(MyGenericMethods):
     LOC_BTN_LEWATI_ON_MODAL = (By.XPATH, '//button[.="Lewati sekarang"]')
     LOC_BTN_ASSESMENT_SIDEBAR = (By.XPATH, '//li[@class="menu-item icon-ujian"]')
     LOC_CREATE_ASSESMENT_DROPDOWN = (By.XPATH, '//div[@class="pr-icon icon-add-assessment"]/parent::div[@class="profile-left"]')
+    LOC_ASSESSMENT_DROPDOWN = (By.XPATH, '//button[@class="profile-item highlight false"]')
 
     """Constructor of the page class"""
     def __init__(self, driver):
@@ -36,6 +37,10 @@ class DashboardTeacher(MyGenericMethods):
         time.sleep(0.5)
         self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
         self.click_to(self.LOC_CREATE_ASSESMENT_DROPDOWN)
+
+    def teacher_go_to_assessment_page(self):
+        self.click_to(self.LOC_BTN_ASSESMENT_SIDEBAR)
+        self.click_to(self.LOC_ASSESSMENT_DROPDOWN)
 
 
 class DashboardStudent(MyGenericMethods):
